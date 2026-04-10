@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f0f12;--bg1:#141418;--bg2:#1a1a22;--bg3:#24242e;--text:#f0f0f2;--text2:#a0a0af;--text3:#5a5a66;--accent:#4ade80;--accent-dim:rgba(74,222,128,0.08);--danger:#f87171;--danger-dim:rgba(248,113,113,0.08);--warn:#fbbf24;--purple:#818cf8;--purple-dim:rgba(129,140,248,0.08);--border:rgba(255,255,255,0.04);--border2:rgba(255,255,255,0.08);--border3:rgba(255,255,255,0.14);--font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:16px;--radius-sm:10px;--radius-xs:8px}
+html,body{height:100%;overflow:hidden;background:var(--bg)}
+body{font-family:var(--font);color:var(--text);font-size:15px;-webkit-font-smoothing:antialiased}
+input,select{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-xs);padding:12px 14px;width:100%;outline:none;color:var(--text3);font-size:15px;font-family:var(--font);pointer-events:none}
+
+.header{position:fixed;top:0;left:0;right:0;height:56px;background:var(--bg);border-bottom:1px solid var(--border3);display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:100}
+.h-title{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.month-pill{display:flex;align-items:center;gap:5px;background:var(--bg2);border:0.5px solid var(--border2);border-radius:20px;padding:5px 13px;cursor:pointer}
+.month-pill span{font-size:13px;font-weight:600;color:var(--text2)}
+.gear-btn{width:36px;height:36px;border-radius:50%;background:var(--bg2);border:0.5px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.gear-btn svg{color:var(--text3)}
+
+.main{position:fixed;top:56px;left:0;right:0;bottom:68px;overflow-y:auto;padding:16px 16px 24px;background:var(--bg)}
+.page{display:none;animation:fadeUp .25s ease}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.tabs{position:fixed;bottom:0;left:0;right:0;height:68px;background:var(--bg);border-top:1px solid var(--border3);display:flex;justify-content:space-around;align-items:flex-start;padding-top:8px;z-index:100}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 12px;border:none;background:none}
+.tab svg{color:var(--text3);transition:color .15s}
+.tab span{font-size:10px;font-weight:600;color:var(--text3);transition:color .15s}
+.tab.active svg{color:var(--accent)}
+.tab.active span{color:var(--accent)}
+
+.card{background:var(--bg1);border:0.5px solid var(--border2);border-radius:var(--radius);padding:18px;margin-bottom:14px}
+.ctitle{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--text3);margin-bottom:14px;text-transform:uppercase}
+.nw-banner{background:var(--bg1);border:0.5px solid var(--border2);border-radius:var(--radius);padding:22px 20px;margin-bottom:14px;position:relative;overflow:hidden}
+.nw-banner::after{content:'';position:absolute;top:-30px;right:-30px;width:110px;height:110px;border-radius:50%;background:var(--accent-dim)}
+.nw-lbl{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--text3);text-transform:uppercase}
+.nw-val{font-size:36px;font-weight:900;color:var(--accent);margin:6px 0 2px;letter-spacing:-.03em;position:relative;z-index:1}
+.nw-sub{font-size:12px;color:var(--text3);font-weight:500}
+
+.mrow{display:grid;gap:8px;margin-bottom:14px;grid-template-columns:repeat(3,1fr)}
+.met{background:var(--bg1);border:0.5px solid var(--border2);border-radius:var(--radius-sm);padding:14px 12px}
+.mlbl{font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--text3);text-transform:uppercase;margin-bottom:5px}
+.mval{font-size:20px;font-weight:800;letter-spacing:-.02em}
+
+.ei{display:flex;align-items:center;gap:8px;padding:12px 0;border-bottom:0.5px solid var(--border)}
+.ei:last-child{border-bottom:none}
+.edot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ecat{font-size:11px;font-weight:700;color:var(--text3);flex:1;text-transform:uppercase;letter-spacing:.03em}
+.enote{font-size:13px;color:var(--text2);flex:2}
+.eamt{font-size:14px;font-weight:800;min-width:56px;text-align:right}
+
+.tcrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--border)}
+.tcrow:last-child{border-bottom:none}
+.tcname{font-size:13px;font-weight:500;color:var(--text2);flex:1}
+.tcbw{width:80px;height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.tcb{height:100%;border-radius:2px}
+.tcamt{font-size:13px;font-weight:700;min-width:52px;text-align:right}
+
+.bitem{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg1);border:0.5px solid var(--border2);border-radius:var(--radius-sm);margin-bottom:8px}
+.bitem.paid{border-color:rgba(74,222,128,0.3);background:var(--accent-dim)}
+.bitem.paid .bntxt{text-decoration:line-through;color:var(--text3)}
+.bitem.paid .bamt{color:var(--accent)}
+.bchk{width:22px;height:22px;cursor:pointer;flex-shrink:0;accent-color:var(--accent)}
+.bntxt{font-size:14px;font-weight:600;flex:1}
+.autobadge{font-size:9px;font-weight:700;letter-spacing:.05em;background:var(--accent-dim);color:var(--accent);border-radius:4px;padding:2px 7px;text-transform:uppercase}
+.bdue{font-size:11px;font-weight:600;color:var(--text3);min-width:34px;text-align:center}
+.bamt{font-size:14px;font-weight:700;min-width:56px;text-align:right}
+
+.acard{background:var(--bg1);border:0.5px solid var(--border2);border-radius:var(--radius);padding:20px;margin-bottom:14px}
+.acard.cc{border-left:3px solid var(--danger)}
+.acard.checking{border-left:3px solid var(--accent)}
+.acard.savings{border-left:3px solid var(--warn)}
+.atop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.aname{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.abadge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:4px;margin-top:3px}
+.abadge.cc{background:var(--danger-dim);color:var(--danger)}
+.abadge.checking{background:var(--accent-dim);color:var(--accent)}
+.abadge.savings{background:rgba(251,191,36,0.08);color:var(--warn)}
+.ameta{font-size:12px;color:var(--text3);margin-top:4px;font-weight:500}
+.abal{font-size:30px;font-weight:900;letter-spacing:-.03em}
+.btn{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-xs);padding:13px 16px;font-size:15px;font-weight:600;cursor:pointer;color:var(--text);width:100%;text-align:center;font-family:var(--font)}
+.btn.pri{background:var(--accent-dim);border-color:var(--accent);color:var(--accent);font-weight:700}
+.fstack{display:flex;flex-direction:column;gap:10px}
+.irow{display:flex;gap:8px}
+.irow>*{flex:1}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div style="display:flex;align-items:center;gap:10px">
+        <span class="h-title" id="hTitle">Dashboard</span>
+        <div class="month-pill" style="cursor:pointer"><span>Apr 2026</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+    <div class="gear-btn" style="cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
+</div>
+
+<div class="main">
+    <!-- HOME -->
+    <div class="page active" id="page-home">
+        <div class="nw-banner">
+            <div class="nw-lbl">Net worth</div>
+            <div class="nw-val">$14,280</div>
+            <div class="nw-sub">assets minus debt</div>
+        </div>
+        <div class="mrow">
+            <div class="met"><div class="mlbl">Income</div><div class="mval" style="color:var(--accent)">$4,200</div></div>
+            <div class="met"><div class="mlbl">Spent</div><div class="mval" style="color:var(--danger)">$2,847</div></div>
+            <div class="met"><div class="mlbl">Left</div><div class="mval" style="color:var(--accent)">$1,353</div></div>
+        </div>
+        <div class="card">
+            <div class="ctitle">Top spending</div>
+            <div class="tcrow"><span class="tcname">Rent</span><div class="tcbw"><div class="tcb" style="width:100%;background:var(--danger)"></div></div><span class="tcamt" style="color:var(--danger)">$1,450</span></div>
+            <div class="tcrow"><span class="tcname">Groceries</span><div class="tcbw"><div class="tcb" style="width:38%;background:var(--warn)"></div></div><span class="tcamt" style="color:var(--warn)">$548</span></div>
+            <div class="tcrow"><span class="tcname">Gas</span><div class="tcbw"><div class="tcb" style="width:18%;background:var(--purple)"></div></div><span class="tcamt" style="color:var(--purple)">$265</span></div>
+            <div class="tcrow"><span class="tcname">Dining</span><div class="tcbw"><div class="tcb" style="width:12%;background:var(--text3)"></div></div><span class="tcamt" style="color:var(--text2)">$180</span></div>
+        </div>
+    </div>
+
+    <!-- EXPENSES -->
+    <div class="page" id="page-exp">
+        <div class="mrow">
+            <div class="met"><div class="mlbl">Income</div><div class="mval" style="color:var(--accent)">$4,200</div></div>
+            <div class="met"><div class="mlbl">Spent</div><div class="mval" style="color:var(--danger)">$2,847</div></div>
+            <div class="met"><div class="mlbl">Left</div><div class="mval" style="color:var(--accent)">$1,353</div></div>
+        </div>
+        <div class="card">
+            <div class="ctitle">Add expense</div>
+            <div class="fstack">
+                <div class="irow"><select disabled><option>Groceries</option></select><input placeholder="$0.00" readonly style="max-width:120px"/></div>
+                <input placeholder="Note (optional)" readonly/>
+                <button class="btn pri" style="cursor:pointer">+ Add expense</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="ctitle">Expenses this month</div>
+            <div class="ei"><div class="edot" style="background:var(--danger)"></div><span class="ecat">Rent</span><span class="enote">April rent</span><span class="eamt" style="color:var(--danger)">$1,450</span></div>
+            <div class="ei"><div class="edot" style="background:var(--warn)"></div><span class="ecat">Groceries</span><span class="enote">Costco run</span><span class="eamt" style="color:var(--danger)">$187</span></div>
+            <div class="ei"><div class="edot" style="background:var(--warn)"></div><span class="ecat">Groceries</span><span class="enote">Trader Joe's</span><span class="eamt" style="color:var(--danger)">$94</span></div>
+            <div class="ei"><div class="edot" style="background:var(--purple)"></div><span class="ecat">Gas</span><span class="enote">Shell</span><span class="eamt" style="color:var(--danger)">$62</span></div>
+            <div class="ei"><div class="edot" style="background:var(--text3)"></div><span class="ecat">Dining</span><span class="enote">Chipotle</span><span class="eamt" style="color:var(--danger)">$14</span></div>
+        </div>
+    </div>
+
+    <!-- BILLS -->
+    <div class="page" id="page-bills">
+        <div class="mrow">
+            <div class="met"><div class="mlbl">Total</div><div class="mval">$2,340</div></div>
+            <div class="met"><div class="mlbl">Paid</div><div class="mval" style="color:var(--accent)">$1,850</div></div>
+            <div class="met"><div class="mlbl">Unpaid</div><div class="mval" style="color:var(--danger)">$490</div></div>
+        </div>
+        <div class="card">
+            <div class="ctitle">Bills this month</div>
+            <div class="bitem paid"><input type="checkbox" class="bchk" checked disabled/><span class="bntxt">Rent</span><span class="autobadge">auto</span><span class="bdue">1st</span><span class="bamt">$1,450</span></div>
+            <div class="bitem paid"><input type="checkbox" class="bchk" checked disabled/><span class="bntxt">Car Insurance</span><span class="autobadge">auto</span><span class="bdue">5th</span><span class="bamt">$185</span></div>
+            <div class="bitem paid"><input type="checkbox" class="bchk" checked disabled/><span class="bntxt">Spotify</span><span class="autobadge">auto</span><span class="bdue">8th</span><span class="bamt">$15</span></div>
+            <div class="bitem"><input type="checkbox" class="bchk" disabled/><span class="bntxt">Electric</span><span class="bdue">15th</span><span class="bamt">$120</span></div>
+            <div class="bitem"><input type="checkbox" class="bchk" disabled/><span class="bntxt">Phone</span><span class="autobadge">auto</span><span class="bdue">20th</span><span class="bamt">$85</span></div>
+        </div>
+    </div>
+
+    <!-- ACCOUNTS -->
+    <div class="page" id="page-accts">
+        <div class="card">
+            <div class="ctitle">Log income / paycheck</div>
+            <div class="fstack">
+                <div class="irow"><input placeholder="Income source" readonly/><input placeholder="Amount $" readonly style="max-width:130px"/></div>
+                <button class="btn pri" style="cursor:pointer">+ Log paycheck</button>
+            </div>
+        </div>
+        <div class="acard checking">
+            <div class="atop"><div><div class="aname">Checking</div><span class="abadge checking">Checking</span></div></div>
+            <div class="ameta">Primary account</div>
+            <div class="abal" style="color:var(--accent);margin-top:8px">$8,420</div>
+        </div>
+        <div class="acard savings">
+            <div class="atop"><div><div class="aname">Emergency Fund</div><span class="abadge savings">Savings</span></div></div>
+            <div class="ameta">High-yield savings</div>
+            <div class="abal" style="color:var(--warn);margin-top:8px">$12,500</div>
+        </div>
+        <div class="acard cc">
+            <div class="atop"><div><div class="aname">Credit Card</div><span class="abadge cc">Credit Card</span></div></div>
+            <div class="ameta">21.99% APR · $200/mo payment</div>
+            <div class="abal" style="color:var(--danger);margin-top:8px">$6,640</div>
+        </div>
+    </div>
+</div>
+
+<div class="tabs">
+    <button class="tab active" onclick="go('home')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg><span>Home</span></button>
+    <button class="tab" onclick="go('exp')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Expenses</span></button>
+    <button class="tab" onclick="go('bills')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 14l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Bills</span></button>
+    <button class="tab" onclick="go('accts')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.5"/></svg><span>Accounts</span></button>
+</div>
+
+<script>
+const titles = {home:'Dashboard',exp:'Expenses',bills:'Bills',accts:'Accounts'};
+function go(tab) {
+    document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', ['home','exp','bills','accts'][i]===tab));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-'+tab).classList.add('active');
+    document.getElementById('hTitle').textContent = titles[tab];
+}
+</script>
+</body>
+</html>

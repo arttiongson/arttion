@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#4ADE80;--orange:#FB923C;--red:#F87171;--blue:#60A5FA}
+body{background:#111113;color:#DDDBD6;font-family:system-ui,-apple-system,sans-serif;font-size:13px;min-height:100vh;overflow-x:hidden}
+input,select{background:#18181B;border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#6E6C68;font-size:12px;padding:9px 12px;outline:none;pointer-events:none}
+.header{border-bottom:1px solid rgba(255,255,255,0.1);background:#111113;position:sticky;top:0;z-index:100;display:flex;align-items:center;height:52px;padding:0 24px}
+.brand{display:flex;align-items:baseline;gap:10px;padding-right:24px;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
+.brand-name{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DDDBD6}
+.brand-sub{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#343230}
+nav{display:flex;flex:1;align-items:stretch;height:52px;padding:0 4px}
+nav a{display:flex;align-items:center;padding:0 16px;font-size:12px;color:#6E6C68;text-decoration:none;position:relative;cursor:pointer;transition:color .2s}
+nav a:hover{color:#DDDBD6}
+nav a.active{color:#DDDBD6}
+nav a.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1.5px;background:#DDDBD6}
+.status{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:11px;color:#6E6C68}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:1}50%{opacity:.3}}
+.main{padding:20px 24px}
+.page{display:none;animation:fadeUp .25s ease}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.search-bar{display:flex;gap:8px;margin-bottom:20px}
+.search-input{display:flex;flex:1;max-width:560px;background:#18181B;border:1px solid rgba(255,255,255,0.11);border-radius:6px;overflow:hidden}
+.search-prefix{padding:0 12px;font-family:monospace;font-size:11px;color:#6E6C68;background:#1E1E22;border-right:1px solid rgba(255,255,255,0.07);display:flex;align-items:center}
+.search-field{flex:1;padding:9px 12px;background:transparent;border:none;color:#6E6C68;font-size:13px}
+.search-btn{padding:0 14px;background:transparent;border:none;border-left:1px solid rgba(255,255,255,0.07);color:#6E6C68;font-size:14px;cursor:pointer}
+.alert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+.alert-card{background:#18181B;border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:16px;position:relative;overflow:hidden;cursor:pointer}
+.alert-card:hover{border-color:rgba(255,255,255,0.12)}
+.alert-bar{position:absolute;top:0;left:0;right:0;height:2px}
+.alert-label{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#6E6C68;margin-bottom:8px}
+.alert-value{font-family:monospace;font-size:30px;line-height:1;margin-bottom:4px}
+.alert-sub{font-size:11px;color:#6E6C68}
+.section-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:0}
+.section-label{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#6E6C68}
+.section-link{font-size:11px;color:#6E6C68;text-decoration:none;cursor:pointer}
+.section-link:hover{color:#DDDBD6}
+table{width:100%;border-collapse:collapse;margin-bottom:22px}
+th{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#6E6C68;font-weight:500;padding:5px 10px;border-bottom:1px solid rgba(255,255,255,0.07);text-align:left;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px}
+tr:hover td{background:rgba(255,255,255,0.018)}
+tr:last-child td{border-bottom:none}
+.mono{font-family:monospace}
+.badge{display:inline-flex;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500;font-family:monospace}
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.panel{background:#18181B;border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:16px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.bar-label{font-family:monospace;font-size:11px;width:60px;flex-shrink:0;color:#DDDBD6}
+.bar-track{flex:1;height:3px;background:#1E1E22;border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;border-radius:2px}
+.bar-count{font-family:monospace;font-size:11px;width:28px;text-align:right}
+.empty-state{padding:32px;text-align:center;color:#6E6C68;font-size:12px}
+.lookup-form{display:flex;flex-direction:column;gap:12px;max-width:480px;margin-bottom:24px}
+.lookup-row{display:flex;gap:8px}
+.lookup-row>*{flex:1}
+</style>
+</head>
+<body>
+<header class="header">
+    <div class="brand">
+        <span class="brand-name">Inventory Portal</span>
+        <span class="brand-sub">Dashboard</span>
+    </div>
+    <nav id="inv-nav">
+        <a class="active" onclick="switchTab(this,'dash')">Dashboard</a>
+        <a onclick="switchTab(this,'lookup')">Item Lookup</a>
+        <a onclick="switchTab(this,'stale')">Stale Inventory</a>
+        <a onclick="switchTab(this,'negative')">Negative Alerts</a>
+    </nav>
+    <div class="status">
+        <div class="live-dot"></div>
+        <span>Connected · Live</span>
+    </div>
+</header>
+
+<div class="main">
+    <!-- Dashboard -->
+    <div class="page active" id="page-dash">
+        <div class="search-bar">
+            <div class="search-input">
+                <div class="search-prefix">ITEM</div>
+                <input class="search-field" placeholder="Code or description..." readonly/>
+                <button class="search-btn">↵</button>
+            </div>
+            <select style="padding:0 12px;cursor:pointer" disabled>
+                <option>All locations</option>
+            </select>
+        </div>
+
+        <div class="alert-grid">
+            <div class="alert-card" onclick="switchTab(document.querySelectorAll('#inv-nav a')[3],'negative')">
+                <div class="alert-bar" style="background:var(--red)"></div>
+                <div class="alert-label">Negative on-hand</div>
+                <div class="alert-value" style="color:var(--red)">12</div>
+                <div class="alert-sub">items with impossible qty</div>
+            </div>
+            <div class="alert-card" onclick="switchTab(document.querySelectorAll('#inv-nav a')[2],'stale')">
+                <div class="alert-bar" style="background:var(--orange)"></div>
+                <div class="alert-label">Stale inventory</div>
+                <div class="alert-value" style="color:var(--orange)">47</div>
+                <div class="alert-sub">&gt;30 days no movement</div>
+            </div>
+            <div class="alert-card">
+                <div class="alert-bar" style="background:var(--green)"></div>
+                <div class="alert-label">ERP connection</div>
+                <div class="alert-value" style="color:var(--green)">OK</div>
+                <div class="alert-sub">Database · DSN connected</div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <span class="section-label">Negative on-hand · live</span>
+            <a class="section-link">View all →</a>
+        </div>
+        <table>
+            <thead><tr><th>Item</th><th>Description</th><th>Location</th><th>UOM</th><th style="text-align:right">On Hand</th></tr></thead>
+            <tbody>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">PLT-4200</td><td style="color:#6E6C68">Standard Growing Tray 10"</td><td><span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">WH-01</span></td><td class="mono" style="color:#6E6C68">EA</td><td class="mono" style="color:var(--red);text-align:right">-24</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">SUB-1180</td><td style="color:#6E6C68">Perlite Mix Grade A</td><td><span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">WH-03</span></td><td class="mono" style="color:#6E6C68">KG</td><td class="mono" style="color:var(--red);text-align:right">-156</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">PKG-0340</td><td style="color:#6E6C68">Sleeve Wrap Clear 6"</td><td><span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">WH-01</span></td><td class="mono" style="color:#6E6C68">BX</td><td class="mono" style="color:var(--red);text-align:right">-8</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">FRT-0095</td><td style="color:#6E6C68">Fertilizer Slow Release 20lb</td><td><span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">WH-02</span></td><td class="mono" style="color:#6E6C68">BG</td><td class="mono" style="color:var(--red);text-align:right">-3</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">TAG-2210</td><td style="color:#6E6C68">Plant Tag Printed 4x6</td><td><span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">SH-01</span></td><td class="mono" style="color:#6E6C68">PK</td><td class="mono" style="color:var(--red);text-align:right">-42</td></tr>
+            </tbody>
+        </table>
+
+        <div class="bottom-grid">
+            <div class="panel">
+                <div class="section-header" style="margin-bottom:14px">
+                    <span class="section-label">Stale by location</span>
+                    <a class="section-link">Full report →</a>
+                </div>
+                <div class="bar-row"><span class="bar-label">WH-01</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--orange)"></div></div><span class="bar-count" style="color:var(--orange)">18</span></div>
+                <div class="bar-row"><span class="bar-label">WH-02</span><div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--orange)"></div></div><span class="bar-count" style="color:var(--orange)">12</span></div>
+                <div class="bar-row"><span class="bar-label">WH-03</span><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--orange)"></div></div><span class="bar-count" style="color:var(--orange)">9</span></div>
+                <div class="bar-row"><span class="bar-label">SH-01</span><div class="bar-track"><div class="bar-fill" style="width:28%;background:var(--orange)"></div></div><span class="bar-count" style="color:var(--orange)">5</span></div>
+                <div class="bar-row"><span class="bar-label">SH-02</span><div class="bar-track"><div class="bar-fill" style="width:17%;background:var(--orange)"></div></div><span class="bar-count" style="color:var(--orange)">3</span></div>
+            </div>
+            <div class="panel">
+                <div class="section-header" style="margin-bottom:14px">
+                    <span class="section-label">Quick lookup result</span>
+                    <a class="section-link">Full lookup →</a>
+                </div>
+                <div class="empty-state" style="padding:48px 16px">Search an item above to see results here.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Lookup -->
+    <div class="page" id="page-lookup">
+        <div class="lookup-form">
+            <div class="lookup-row">
+                <input placeholder="Item number or description..." readonly/>
+                <select disabled><option>All locations</option></select>
+            </div>
+        </div>
+        <div class="empty-state" style="padding:60px 16px">Enter an item code or description to search inventory across all locations.</div>
+    </div>
+
+    <!-- Stale Inventory -->
+    <div class="page" id="page-stale">
+        <div class="section-header" style="margin-bottom:0">
+            <span class="section-label">Stale inventory · &gt;30 days no movement</span>
+            <span style="font-size:11px;color:var(--orange)">47 items</span>
+        </div>
+        <table>
+            <thead><tr><th>Item</th><th>Description</th><th>Location</th><th style="text-align:right">On Hand</th><th style="text-align:right">Days Stale</th></tr></thead>
+            <tbody>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">POT-3300</td><td style="color:#6E6C68">Ceramic Pot White 8"</td><td class="mono" style="color:#6E6C68">WH-01</td><td class="mono" style="text-align:right">340</td><td class="mono" style="color:var(--orange);text-align:right">94</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">SOI-0820</td><td style="color:#6E6C68">Potting Soil Premium 40L</td><td class="mono" style="color:#6E6C68">WH-03</td><td class="mono" style="text-align:right">1,200</td><td class="mono" style="color:var(--orange);text-align:right">72</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">LBL-1150</td><td style="color:#6E6C68">UPC Label Roll 1000ct</td><td class="mono" style="color:#6E6C68">SH-01</td><td class="mono" style="text-align:right">28</td><td class="mono" style="color:var(--orange);text-align:right">61</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">TRL-0040</td><td style="color:#6E6C68">Trellis Wire Gauge 12</td><td class="mono" style="color:#6E6C68">WH-02</td><td class="mono" style="text-align:right">85</td><td class="mono" style="color:var(--orange);text-align:right">55</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">DRP-0610</td><td style="color:#6E6C68">Drip Emitter 2GPH</td><td class="mono" style="color:#6E6C68">WH-01</td><td class="mono" style="text-align:right">4,500</td><td class="mono" style="color:var(--orange);text-align:right">48</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Negative Alerts -->
+    <div class="page" id="page-negative">
+        <div class="section-header" style="margin-bottom:0">
+            <span class="section-label">Negative on-hand alerts</span>
+            <span style="font-size:11px;color:var(--red)">12 items</span>
+        </div>
+        <table>
+            <thead><tr><th>Item</th><th>Description</th><th>Location</th><th>UOM</th><th style="text-align:right">On Hand</th></tr></thead>
+            <tbody>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">PLT-4200</td><td style="color:#6E6C68">Standard Growing Tray 10"</td><td><span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">WH-01</span></td><td class="mono" style="color:#6E6C68">EA</td><td class="mono" style="color:var(--red);text-align:right">-24</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">SUB-1180</td><td style="color:#6E6C68">Perlite Mix Grade A</td><td><span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">WH-03</span></td><td class="mono" style="color:#6E6C68">KG</td><td class="mono" style="color:var(--red);text-align:right">-156</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">PKG-0340</td><td style="color:#6E6C68">Sleeve Wrap Clear 6"</td><td><span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">WH-01</span></td><td class="mono" style="color:#6E6C68">BX</td><td class="mono" style="color:var(--red);text-align:right">-8</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">FRT-0095</td><td style="color:#6E6C68">Fertilizer Slow Release 20lb</td><td><span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">WH-02</span></td><td class="mono" style="color:#6E6C68">BG</td><td class="mono" style="color:var(--red);text-align:right">-3</td></tr>
+                <tr style="cursor:pointer"><td class="mono" style="color:#DDDBD6">TAG-2210</td><td style="color:#6E6C68">Plant Tag Printed 4x6</td><td><span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">SH-01</span></td><td class="mono" style="color:#6E6C68">PK</td><td class="mono" style="color:var(--red);text-align:right">-42</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+function switchTab(el, pageId) {
+    document.querySelectorAll('#inv-nav a').forEach(a => a.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + pageId).classList.add('active');
+    document.querySelector('.brand-sub').textContent = el.textContent.trim();
+}
+</script>
+</body>
+</html>
