@@ -788,61 +788,61 @@
             50% { opacity: 0.35; }
         }
 
-        /* Device frames for iOS/iPadOS previews in modals */
-        .modal-preview--phone, .modal-preview--tablet {
+        /* Modal preview variants for iOS/iPadOS shots (real device bezel in image) */
+        .modal-preview--gallery, .modal-preview--tablet {
             padding: 0 !important;
-            display: flex; align-items: center; justify-content: center;
-            background: radial-gradient(ellipse at 50% 40%, rgba(122,158,142,0.06), transparent 60%), #070a09;
+            background: radial-gradient(ellipse at 50% 35%, rgba(122,158,142,0.07), transparent 62%), #070a09;
             border-radius: 14px 0 0 14px;
             overflow: hidden;
-        }
-        .phone-frame, .tablet-frame {
             position: relative;
-            background: #0a0a0a;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow:
-                0 30px 70px rgba(0,0,0,0.55),
-                inset 0 0 0 2px rgba(255,255,255,0.03);
-            overflow: hidden;
         }
-        .phone-frame {
-            width: min(78%, 320px);
-            aspect-ratio: 9 / 19.5;
-            border-radius: 36px;
-            padding: 10px;
-        }
-        .phone-frame iframe,
-        .phone-frame img {
-            width: 100%; height: 100%;
-            border: none; border-radius: 26px;
-            display: block; object-fit: cover;
-        }
-        .tablet-frame {
-            width: min(96%, 780px);
-            aspect-ratio: 4 / 3;
-            border-radius: 22px;
-            padding: 10px;
-        }
-        .tablet-frame img {
-            width: 100%; height: 100%;
-            border-radius: 14px;
-            display: block; object-fit: cover;
-        }
-        /* Placeholder state when image is missing */
-        .phone-frame.frame-empty,
-        .tablet-frame.frame-empty {
+        /* Phone gallery — horizontal scroll of full iPhone shots with real bezel */
+        .modal-preview--gallery {
             display: flex; align-items: center; justify-content: center;
-            background:
-                repeating-linear-gradient(45deg, rgba(122,158,142,0.04) 0 10px, transparent 10px 20px),
-                #0a0a0a;
         }
-        .phone-frame.frame-empty::after,
-        .tablet-frame.frame-empty::after {
-            content: attr(data-placeholder);
-            color: var(--text-muted);
-            font-size: 0.72rem; letter-spacing: 0.05em;
-            text-align: center; padding: 0 1.2rem; line-height: 1.5;
-            max-width: 80%;
+        .phone-gallery {
+            display: flex; gap: 1.25rem;
+            padding: 1.5rem 1.75rem;
+            overflow-x: auto; overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            max-width: 100%;
+            align-items: center;
+        }
+        .phone-gallery::-webkit-scrollbar { display: none; }
+        .phone-gallery img {
+            height: min(78vh, 640px);
+            width: auto;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            filter: drop-shadow(0 24px 48px rgba(0,0,0,0.55));
+            border-radius: 8px;
+            display: block;
+        }
+        /* Ombri's 4-up composition reads better a bit smaller */
+        .phone-gallery--ombri img { height: min(72vh, 580px); }
+
+        /* iPad landscape hero */
+        .modal-preview--tablet {
+            display: flex; align-items: center; justify-content: center;
+            padding: 2rem !important;
+        }
+        .tablet-hero {
+            max-width: 94%;
+            max-height: 82vh;
+            width: auto; height: auto;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.55));
+            border-radius: 6px;
+            display: block;
+        }
+
+        /* Scroll hint for galleries with multiple shots */
+        .modal-preview--gallery::after {
+            content: "";
+            position: absolute;
+            right: 0; top: 0; bottom: 0; width: 40px;
+            background: linear-gradient(to left, rgba(7,10,9,0.9), transparent);
+            pointer-events: none;
         }
 
         /* ── CONTACT ───────────────────────────── */
@@ -1445,9 +1445,12 @@
     <!-- Modals -->
     <div class="modal-overlay" id="modal-ombri" onclick="closeModal(event,'ombri')">
         <div class="modal">
-            <div class="modal-preview modal-preview--phone">
-                <div class="phone-frame">
-                    <iframe src="https://arttiongson.github.io/Ombri/" loading="lazy" title="Ombri live preview"></iframe>
+            <div class="modal-preview modal-preview--gallery">
+                <div class="phone-gallery phone-gallery--ombri">
+                    <img src="ombri-morning.png" alt="Ombri — Morning theme" loading="lazy">
+                    <img src="ombri-afternoon.png" alt="Ombri — Afternoon theme" loading="lazy">
+                    <img src="ombri-sunset.png" alt="Ombri — Sunset theme" loading="lazy">
+                    <img src="ombri-night.png" alt="Ombri — Night theme" loading="lazy">
                 </div>
             </div>
             <div class="modal-panel">
@@ -1456,9 +1459,9 @@
                 </button>
                 <span class="modal-type">iOS Application · In progress</span>
                 <h3 class="modal-title">Ombri</h3>
-                <p class="modal-desc">A personal finance iOS app built around the idea that spending feels different at different times of day. Morning, afternoon, sunset, and night themes shift the entire interface — warm ambers to deep violets — so the app reads like an extension of the hour. Currently in closed beta; the App Store release is around the corner. Preview on the left is the live web landing.</p>
+                <p class="modal-desc">A personal finance iOS app built around the idea that spending feels different at different times of day. Four time-of-day themes — morning, afternoon, sunset, night — shift the entire interface as the sun moves, from warm ambers to deep violets. Same data, same layout; the palette and asymmetry do the storytelling. Currently in closed beta with the App Store release on the horizon.</p>
                 <div class="modal-actions">
-                    <a href="https://arttiongson.github.io/Ombri/" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="m15 3 6 0 0 6"/><path d="m10 14 11-11"/></svg> View live</a>
+                    <a href="https://arttiongson.github.io/Ombri/" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="m15 3 6 0 0 6"/><path d="m10 14 11-11"/></svg> View landing</a>
                 </div>
             </div>
         </div>
@@ -1486,9 +1489,7 @@
     <div class="modal-overlay" id="modal-musictool" onclick="closeModal(event,'musictool')">
         <div class="modal">
             <div class="modal-preview modal-preview--tablet">
-                <div class="tablet-frame">
-                    <img src="musictool-hero.png" alt="Music Tool — Chords tab" onerror="this.style.display='none';this.parentElement.classList.add('frame-empty');this.parentElement.dataset.placeholder='Screenshot goes here — drop musictool-hero.png in the repo root'">
-                </div>
+                <img class="tablet-hero" src="musictool-hero.png" alt="Music Tool — Chords tab on iPad" loading="lazy">
             </div>
             <div class="modal-panel">
                 <button class="modal-close" onclick="closeModal(event,'musictool',true)">
@@ -1506,9 +1507,11 @@
 
     <div class="modal-overlay" id="modal-fitness" onclick="closeModal(event,'fitness')">
         <div class="modal">
-            <div class="modal-preview modal-preview--phone">
-                <div class="phone-frame">
-                    <img src="fitness-hero.png" alt="AI-Powered Fitness" onerror="this.style.display='none';this.parentElement.classList.add('frame-empty');this.parentElement.dataset.placeholder='Screenshot goes here — drop fitness-hero.png in the repo root'">
+            <div class="modal-preview modal-preview--gallery">
+                <div class="phone-gallery">
+                    <img src="fitness-coach.png" alt="AI-Powered Fitness — Coach chat" loading="lazy">
+                    <img src="fitness-workout.png" alt="AI-Powered Fitness — Workout history" loading="lazy">
+                    <img src="fitness-nutrition.png" alt="AI-Powered Fitness — Nutrition tracking" loading="lazy">
                 </div>
             </div>
             <div class="modal-panel">
