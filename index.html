@@ -760,6 +760,91 @@
             box-shadow: 0 0 20px rgba(122,158,142,0.15);
         }
 
+        /* Status pill (In progress / Side project) */
+        .work-card-head { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.7rem; flex-wrap: wrap; }
+        .work-card-head .work-card-type { margin-bottom: 0; }
+        .status-pill {
+            font-size: 0.58rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--text-muted);
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.02);
+            padding: 0.18rem 0.55rem; border-radius: 100px;
+        }
+        .status-pill--progress {
+            color: var(--accent);
+            border-color: rgba(122,158,142,0.32);
+            background: rgba(122,158,142,0.06);
+            position: relative; padding-left: 1.1rem;
+        }
+        .status-pill--progress::before {
+            content: ""; position: absolute; left: 0.45rem; top: 50%;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); transform: translateY(-50%);
+            box-shadow: 0 0 8px var(--accent);
+            animation: status-pulse 2.2s ease-in-out infinite;
+        }
+        @keyframes status-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
+
+        /* Device frames for iOS/iPadOS previews in modals */
+        .modal-preview--phone, .modal-preview--tablet {
+            padding: 0 !important;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(ellipse at 50% 40%, rgba(122,158,142,0.06), transparent 60%), #070a09;
+            border-radius: 14px 0 0 14px;
+            overflow: hidden;
+        }
+        .phone-frame, .tablet-frame {
+            position: relative;
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow:
+                0 30px 70px rgba(0,0,0,0.55),
+                inset 0 0 0 2px rgba(255,255,255,0.03);
+            overflow: hidden;
+        }
+        .phone-frame {
+            width: min(78%, 320px);
+            aspect-ratio: 9 / 19.5;
+            border-radius: 36px;
+            padding: 10px;
+        }
+        .phone-frame iframe,
+        .phone-frame img {
+            width: 100%; height: 100%;
+            border: none; border-radius: 26px;
+            display: block; object-fit: cover;
+        }
+        .tablet-frame {
+            width: min(96%, 780px);
+            aspect-ratio: 4 / 3;
+            border-radius: 22px;
+            padding: 10px;
+        }
+        .tablet-frame img {
+            width: 100%; height: 100%;
+            border-radius: 14px;
+            display: block; object-fit: cover;
+        }
+        /* Placeholder state when image is missing */
+        .phone-frame.frame-empty,
+        .tablet-frame.frame-empty {
+            display: flex; align-items: center; justify-content: center;
+            background:
+                repeating-linear-gradient(45deg, rgba(122,158,142,0.04) 0 10px, transparent 10px 20px),
+                #0a0a0a;
+        }
+        .phone-frame.frame-empty::after,
+        .tablet-frame.frame-empty::after {
+            content: attr(data-placeholder);
+            color: var(--text-muted);
+            font-size: 0.72rem; letter-spacing: 0.05em;
+            text-align: center; padding: 0 1.2rem; line-height: 1.5;
+            max-width: 80%;
+        }
+
         /* ── CONTACT ───────────────────────────── */
         .contact {
             position: relative;
@@ -1167,7 +1252,7 @@
                     </div>
 
                     <p class="about-text reveal reveal-d5">
-                        That first win set the trajectory. Using AI, I went on to build an <strong>internal inventory portal in ASP.NET Core</strong> with C# and Razor Pages, a <strong>full-stack personal finance tracker</strong>, a <strong>Python-powered Discord bot</strong> with slash commands and music queuing, and <strong>this portfolio site</strong> you're looking at right now.
+                        That first win set the trajectory. Using AI, I went on to build an <strong>internal inventory portal in ASP.NET Core</strong> with C# and Razor Pages, <strong>Ombri</strong> — a personal finance iOS app, <strong>Music Tool</strong> — an iPadOS reference app for guitar, ukulele, and bass, a <strong>Python-powered Discord bot</strong> with slash commands and music queuing, and <strong>this portfolio site</strong> you're looking at right now.
                     </p>
                     <p class="about-text reveal reveal-d5">
                         I don't position myself as a developer. I'm an <strong>operations-minded builder</strong> who uses AI to ship at the speed of a full engineering team. I see where processes break down, and I have the tools and the fluency to fix them.
@@ -1234,15 +1319,19 @@
             <span class="work-label reveal">Selected Work</span>
             <h2 class="work-heading reveal reveal-d1">Things I've Built</h2>
             <div class="work-cards">
-                <div class="work-card reveal reveal-d2" onclick="openModal('finance')">
+                <div class="work-card reveal reveal-d2" onclick="openModal('ombri')">
                     <div class="work-card-content">
-                        <span class="work-card-type">Web Application</span>
-                        <h3 class="work-card-title">Personal Finance Tracker</h3>
-                        <p class="work-card-desc">A full-stack budgeting tool for logging expenses, categorizing spending, and monitoring monthly budget — built solo, end-to-end.</p>
+                        <div class="work-card-head">
+                            <span class="work-card-type">iOS Application</span>
+                            <span class="status-pill status-pill--progress">In progress</span>
+                        </div>
+                        <h3 class="work-card-title">Ombri</h3>
+                        <p class="work-card-desc">Finance by the hour — a personal finance iOS app with a time-of-day aesthetic. Morning, afternoon, sunset, and night themes shift the interface as the day moves. Currently in beta.</p>
                         <div class="work-card-tech">
-                            <span class="work-card-pill">HTML/CSS</span>
-                            <span class="work-card-pill">JavaScript</span>
-                            <span class="work-card-pill">Full-Stack</span>
+                            <span class="work-card-pill">Swift</span>
+                            <span class="work-card-pill">SwiftUI</span>
+                            <span class="work-card-pill">iOS</span>
+                            <span class="work-card-pill">PWA Preview</span>
                         </div>
                     </div>
                     <div class="work-card-arrow">
@@ -1265,32 +1354,38 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
                     </div>
                 </div>
-                <div class="work-card work-card--no-modal reveal reveal-d4">
+                <div class="work-card reveal reveal-d4" onclick="openModal('musictool')">
                     <div class="work-card-content">
-                        <span class="work-card-type">Process Automation</span>
-                        <h3 class="work-card-title">Power Query Reconciliation Pipeline</h3>
-                        <p class="work-card-desc">Automated monthly inventory reconciliation by building a Power Query pipeline with live ODBC connections to Microsoft Dynamics NAV. Reduced a 2-3 day manual process to a single click.</p>
+                        <div class="work-card-head">
+                            <span class="work-card-type">iPadOS Application</span>
+                            <span class="status-pill">Side project</span>
+                        </div>
+                        <h3 class="work-card-title">Music Tool</h3>
+                        <p class="work-card-desc">An iPad reference tool for guitar, ukulele, and bass. Chord library with color-coded voicings rendered on a live fretboard, scale visualization, chromatic tuner with autocorrelation pitch detection, and a songs workspace with chord diagrams.</p>
                         <div class="work-card-tech">
-                            <span class="work-card-pill">Power Query</span>
-                            <span class="work-card-pill">ODBC</span>
-                            <span class="work-card-pill">Excel</span>
-                            <span class="work-card-pill">NAV</span>
+                            <span class="work-card-pill">SwiftUI</span>
+                            <span class="work-card-pill">iPadOS 18+</span>
+                            <span class="work-card-pill">AVAudioEngine</span>
+                            <span class="work-card-pill">Canvas</span>
                         </div>
                     </div>
                     <div class="work-card-arrow">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
                     </div>
                 </div>
-                <div class="work-card reveal reveal-d5" onclick="openModal('gymsync')">
+                <div class="work-card reveal reveal-d5" onclick="openModal('fitness')">
                     <div class="work-card-content">
-                        <span class="work-card-type">Web Application</span>
-                        <h3 class="work-card-title">GymSync</h3>
-                        <p class="work-card-desc">Real-time music streaming app with YouTube search, shared queue, playlists, and a Spotify-inspired mobile UI — built for syncing music during gym sessions.</p>
+                        <div class="work-card-head">
+                            <span class="work-card-type">iOS Application</span>
+                            <span class="status-pill status-pill--progress">In progress</span>
+                        </div>
+                        <h3 class="work-card-title">AI-Powered Fitness</h3>
+                        <p class="work-card-desc">An iOS fitness companion with Claude at its core — conversational workout planning, adaptive programming, and a coach that actually listens. Log a session, ask for a swap, get a structured plan back.</p>
                         <div class="work-card-tech">
-                            <span class="work-card-pill">Node.js</span>
-                            <span class="work-card-pill">Express</span>
-                            <span class="work-card-pill">Socket.io</span>
-                            <span class="work-card-pill">JavaScript</span>
+                            <span class="work-card-pill">Swift</span>
+                            <span class="work-card-pill">SwiftUI</span>
+                            <span class="work-card-pill">Claude API</span>
+                            <span class="work-card-pill">iOS</span>
                         </div>
                     </div>
                     <div class="work-card-arrow">
@@ -1348,20 +1443,22 @@
     </button>
 
     <!-- Modals -->
-    <div class="modal-overlay" id="modal-finance" onclick="closeModal(event,'finance')">
+    <div class="modal-overlay" id="modal-ombri" onclick="closeModal(event,'ombri')">
         <div class="modal">
-            <div class="modal-preview" style="padding:0">
-                <iframe src="mockup-finance.html" style="width:100%;height:100%;border:none;border-radius:14px 0 0 14px"></iframe>
+            <div class="modal-preview modal-preview--phone">
+                <div class="phone-frame">
+                    <iframe src="https://arttiongson.github.io/Ombri/" loading="lazy" title="Ombri live preview"></iframe>
+                </div>
             </div>
             <div class="modal-panel">
-                <button class="modal-close" onclick="closeModal(event,'finance',true)">
+                <button class="modal-close" onclick="closeModal(event,'ombri',true)">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
-                <span class="modal-type">Web Application</span>
-                <h3 class="modal-title">Personal Finance Tracker</h3>
-                <p class="modal-desc">Built to solve a personal problem — I needed a clear, simple way to see where my money was going. Full-stack web app for logging daily expenses, auto-categorizing transactions, and tracking spending against monthly targets. V1 is live and being tested by real users. Built entirely solo using AI as a development partner.</p>
+                <span class="modal-type">iOS Application · In progress</span>
+                <h3 class="modal-title">Ombri</h3>
+                <p class="modal-desc">A personal finance iOS app built around the idea that spending feels different at different times of day. Morning, afternoon, sunset, and night themes shift the entire interface — warm ambers to deep violets — so the app reads like an extension of the hour. Currently in closed beta; the App Store release is around the corner. Preview on the left is the live web landing.</p>
                 <div class="modal-actions">
-                    <a href="https://github.com/arttiongson" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
+                    <a href="https://arttiongson.github.io/Ombri/" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="m15 3 6 0 0 6"/><path d="m10 14 11-11"/></svg> View live</a>
                 </div>
             </div>
         </div>
@@ -1386,20 +1483,43 @@
         </div>
     </div>
 
-    <div class="modal-overlay" id="modal-gymsync" onclick="closeModal(event,'gymsync')">
+    <div class="modal-overlay" id="modal-musictool" onclick="closeModal(event,'musictool')">
         <div class="modal">
-            <div class="modal-preview" style="padding:0">
-                <iframe src="mockup-gymsync.html" style="width:100%;height:100%;border:none;border-radius:14px 0 0 14px"></iframe>
+            <div class="modal-preview modal-preview--tablet">
+                <div class="tablet-frame">
+                    <img src="musictool-hero.png" alt="Music Tool — Chords tab" onerror="this.style.display='none';this.parentElement.classList.add('frame-empty');this.parentElement.dataset.placeholder='Screenshot goes here — drop musictool-hero.png in the repo root'">
+                </div>
             </div>
             <div class="modal-panel">
-                <button class="modal-close" onclick="closeModal(event,'gymsync',true)">
+                <button class="modal-close" onclick="closeModal(event,'musictool',true)">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
-                <span class="modal-type">Web Application</span>
-                <h3 class="modal-title">GymSync</h3>
-                <p class="modal-desc">A real-time music streaming web app built for syncing tracks during gym sessions. Features YouTube search, shared queue with Socket.io for real-time sync across devices, playlist management, listening history, and a Spotify-inspired mobile-first UI. Full-stack Node.js backend with Express, yt-dlp for audio extraction, and SQLite for persistence. Built entirely solo using AI as a development partner.</p>
+                <span class="modal-type">iPadOS Application · Side project</span>
+                <h3 class="modal-title">Music Tool</h3>
+                <p class="modal-desc">A personal reference tool for guitar, ukulele, and bass, built in SwiftUI for iPadOS 18+ in landscape. Four tabs: a Chords library rendering 86 voicings as color-coded dots on a live fretboard, a Note Board for scale visualization, a chromatic Tuner with autocorrelation pitch detection, and a Songs workspace that captures chord progressions as visual diagrams. Warm lo-fi analog aesthetic — rosewood fretboard, brass strings, film grain, Playfair Display serif.</p>
                 <div class="modal-actions">
-                    <a href="https://github.com/arttiongson/gymsync" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
+                    <a href="https://github.com/arttiongson" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-fitness" onclick="closeModal(event,'fitness')">
+        <div class="modal">
+            <div class="modal-preview modal-preview--phone">
+                <div class="phone-frame">
+                    <img src="fitness-hero.png" alt="AI-Powered Fitness" onerror="this.style.display='none';this.parentElement.classList.add('frame-empty');this.parentElement.dataset.placeholder='Screenshot goes here — drop fitness-hero.png in the repo root'">
+                </div>
+            </div>
+            <div class="modal-panel">
+                <button class="modal-close" onclick="closeModal(event,'fitness',true)">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+                <span class="modal-type">iOS Application · In progress</span>
+                <h3 class="modal-title">AI-Powered Fitness</h3>
+                <p class="modal-desc">An iOS fitness companion with Claude at its core. Conversational workout planning, adaptive programming that learns your lifts, and a coach that actually listens — log a session, ask for a swap, get a structured plan back. Currently in active development; built in SwiftUI with the Claude API as the brain.</p>
+                <div class="modal-actions">
+                    <a href="https://github.com/arttiongson" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
                 </div>
             </div>
         </div>
