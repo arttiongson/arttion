@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArtFitness — Home</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+        background: radial-gradient(ellipse at 50% 30%, rgba(31,122,255,0.10), transparent 60%), #070a09;
+        display: flex; align-items: center; justify-content: center;
+        font-family: -apple-system, "SF Pro Text", system-ui, sans-serif;
+        overflow: hidden;
+    }
+    #stage { position: relative; }
+    #phone {
+        width: 390px; height: 844px;
+        background: #000; border-radius: 46px; overflow: hidden;
+        box-shadow: 0 40px 90px rgba(0,0,0,0.6), inset 0 0 0 2px #1c1c20, 0 0 0 10px #0c0c0e;
+        position: relative;
+    }
+    /* status bar overlay */
+    #phone::before {
+        content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+        width: 120px; height: 30px; background: #000; border-radius: 18px; z-index: 50;
+    }
+    #app { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+    <div id="stage">
+        <div id="phone"><div id="app"></div></div>
+    </div>
+
+    <script type="text/babel" data-presets="react">
+// ── Artifact-environment helpers, stubbed for standalone render ──
+function useTweaks(defaults) {
+    const [t, setT] = React.useState(defaults);
+    const setTweak = (k, v) => setT(p => ({ ...p, [k]: v }));
+    return [t, setTweak];
+}
+function TweaksPanel() { return null; }
+function TweakSection() { return null; }
+function TweakToggle() { return null; }
+
+// ===================== ArtFitness — Home Screen v1 =====================
+const C = {
+  bg:'#000000', card:'#1A1A1D', cardHi:'#23232A', border:'#2A2A30', borderHi:'#33333A',
+  text:'#FFFFFF', text2:'#9A9AA2', text3:'#5C5C66', text4:'#3A3A42',
+  blue:'#1F7AFF', blueDim:'#0E3D8C', blueGhost:'rgba(31,122,255,0.10)',
+  green:'#30D158', greenDim:'#1F6E2E', orange:'#FF9F0A', red:'#FF453A', yellow:'#FFD60A',
+};
+const num = { fontVariantNumeric:'tabular-nums', fontFeatureSettings:'"tnum" 1, "ss01" 1', letterSpacing:'-0.02em' };
+
+function Header() {
+  return (
+    <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', padding:'4px 18px 8px' }}>
+      <div>
+        <div style={{ fontSize:32, fontWeight:800, color:C.text, lineHeight:1, letterSpacing:'-0.03em' }}>Saturday</div>
+        <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.18em', color:C.text3, textTransform:'uppercase', marginTop:4 }}>May 9</div>
+      </div>
+      <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+        <div style={{ display:'flex', alignItems:'baseline', gap:5, padding:'8px 11px', borderRadius:8, background:C.card, border:`1px solid ${C.border}` }}>
+          <span style={{ ...num, fontSize:14, fontWeight:800, color:C.text, lineHeight:1 }}>6</span>
+          <span style={{ fontSize:11, fontWeight:700, color:C.text3, lineHeight:1, textTransform:'uppercase', letterSpacing:'0.12em' }}>Day Streak</span>
+        </div>
+        <button style={{ width:36, height:36, borderRadius:8, background:C.card, border:`1px solid ${C.border}`, display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer', padding:0 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="3" stroke={C.text2} strokeWidth="2"/>
+            <path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1A1.7 1.7 0 004.6 9a1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z" stroke={C.text2} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function MomentumHero({ showBreakdown = true }) {
+  const days = [
+    { d:'S', v:42, delta:-2 }, { d:'M', v:38, delta:-4 }, { d:'T', v:47, delta:+9 },
+    { d:'W', v:51, delta:+4 }, { d:'T', v:49, delta:-2 }, { d:'F', v:55, delta:+6 },
+    { d:'S', v:58, delta:+3, today:true },
+  ];
+  return (
+    <div style={{ margin:'0 14px', padding:'8px 14px 8px', background:C.card, borderRadius:14, border:`1px solid ${C.border}`, position:'relative', overflow:'hidden' }}>
+      <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:`linear-gradient(90deg, ${C.blue} 0%, ${C.blue} 70%, transparent 100%)`, opacity:0.55 }} />
+      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:4 }}>
+        <div style={{ display:'flex', alignItems:'center', gap:6 }}>
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 0.5L6.7 4.3L10.5 5.5L6.7 6.7L5.5 10.5L4.3 6.7L0.5 5.5L4.3 4.3L5.5 0.5Z" fill={C.blue}/></svg>
+          <span style={{ fontSize:11, fontWeight:800, color:C.blue, letterSpacing:'0.16em', textTransform:'uppercase' }}>Momentum</span>
+          <span style={{ color:C.text4, fontSize:11 }}>·</span>
+          <span style={{ fontSize:11, fontWeight:600, color:C.text3, letterSpacing:'0.1em', textTransform:'uppercase' }}>This week</span>
+        </div>
+        <div style={{ display:'flex', alignItems:'center', gap:4, padding:'3px 7px', borderRadius:5, background:'rgba(48,209,88,0.12)', border:`1px solid rgba(48,209,88,0.25)` }}>
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 1L7 6H1L4 1Z" fill={C.green}/></svg>
+          <span style={{ ...num, fontSize:11, fontWeight:700, color:C.green }}>+8</span>
+        </div>
+      </div>
+      <div style={{ display:'flex', alignItems:'flex-end', gap:14, marginBottom:6, marginTop:0 }}>
+        <div style={{ display:'flex', alignItems:'baseline', gap:4 }}>
+          <span style={{ ...num, fontSize:44, fontWeight:900, color:C.text, lineHeight:0.85, letterSpacing:'-0.04em' }}>58</span>
+          <span style={{ ...num, fontSize:13, fontWeight:700, color:C.text3, letterSpacing:'-0.02em' }}>/100</span>
+        </div>
+        <div style={{ flex:1, display:'flex', alignItems:'flex-end', gap:4, height:60, paddingBottom:0 }}>
+          {days.map((d, i) => {
+            const up = d.delta >= 0;
+            return (
+              <div key={i} style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', gap:2 }}>
+                <div style={{ fontSize:8, fontWeight:800, color:d.today?C.blue:C.text4, letterSpacing:'0.08em' }}>{d.d}</div>
+                <div style={{ ...num, fontSize:9, fontWeight:700, color:d.today?C.text:C.text3, letterSpacing:'-0.02em' }}>{d.v}</div>
+                <div style={{ width:'100%', flex:1, background:d.today?C.blue:C.borderHi, borderRadius:1.5, boxShadow:d.today?`0 0 8px ${C.blue}66`:'none', minHeight:4, height:`${(d.v/80)*100}%` }} />
+                <div style={{ ...num, fontSize:9, fontWeight:800, color:up?C.green:C.red, letterSpacing:'-0.02em', display:'flex', alignItems:'center', gap:1 }}>
+                  <span style={{ fontSize:7 }}>{up?'▲':'▼'}</span>{Math.abs(d.delta)}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      {showBreakdown && <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:8, paddingTop:8, borderTop:`1px solid ${C.border}` }}>
+        <div style={{ display:'flex', alignItems:'center', gap:8, padding:'7px 9px', borderRadius:8, background:'rgba(48,209,88,0.08)', border:'1px solid rgba(48,209,88,0.22)' }}>
+          <div style={{ width:22, height:22, borderRadius:5, background:'rgba(48,209,88,0.18)', display:'flex', alignItems:'center', justifyContent:'center' }}>
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1.5V8.5M5 1.5L2 4.5M5 1.5L8 4.5" stroke={C.green} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>
+          </div>
+          <div style={{ minWidth:0, flex:1 }}>
+            <div style={{ fontSize:9, fontWeight:700, color:C.text3, letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:1 }}>HELPING</div>
+            <div style={{ display:'flex', alignItems:'baseline', gap:5 }}>
+              <span style={{ fontSize:12, fontWeight:800, color:C.text }}>Consistency</span>
+              <span style={{ ...num, fontSize:11, fontWeight:800, color:C.green }}>+12</span>
+            </div>
+          </div>
+        </div>
+        <div style={{ display:'flex', alignItems:'center', gap:8, padding:'7px 9px', borderRadius:8, background:'rgba(255,69,58,0.08)', border:'1px solid rgba(255,69,58,0.22)' }}>
+          <div style={{ width:22, height:22, borderRadius:5, background:'rgba(255,69,58,0.18)', display:'flex', alignItems:'center', justifyContent:'center' }}>
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1.5V8.5M5 8.5L2 5.5M5 8.5L8 5.5" stroke={C.red} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>
+          </div>
+          <div style={{ minWidth:0, flex:1 }}>
+            <div style={{ fontSize:9, fontWeight:700, color:C.text3, letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:1 }}>HURTING</div>
+            <div style={{ display:'flex', alignItems:'baseline', gap:5 }}>
+              <span style={{ fontSize:12, fontWeight:800, color:C.text }}>Nutrition</span>
+              <span style={{ ...num, fontSize:11, fontWeight:800, color:C.red }}>−5</span>
+            </div>
+          </div>
+        </div>
+      </div>}
+    </div>
+  );
+}
+
+function CoachRecommends({ hasCoachPick = true }) {
+  const [picked, setPicked] = React.useState(hasCoachPick ? 'coach' : 'push');
+  React.useEffect(() => { setPicked(hasCoachPick ? 'coach' : 'push'); }, [hasCoachPick]);
+  const chips = [
+    { k:'push', l:'Push' }, { k:'pull', l:'Pull' }, { k:'legs', l:'Legs' },
+    { k:'coach', l:"Coach's Pick", star:true, disabled:!hasCoachPick },
+  ];
+  const titles = {
+    push: { name:'Push · Chest & Shoulders', meta:'5 exercises · 17 sets · ~52 min', freestyle:false },
+    pull: { name:'Pull · Back & Biceps', meta:'5 exercises · 16 sets · ~50 min', freestyle:false },
+    legs: { name:'Legs · Quads & Glutes', meta:'6 exercises · 19 sets · ~58 min', freestyle:false },
+    coach: hasCoachPick
+      ? { name:'Push · Chest & Shoulders', meta:'Bench held at 135 — 4×8 clean before stepping up.', freestyle:false }
+      : { name:'No pick today', meta:'Coach is resting you. Pick a focus to train anyway.', freestyle:true },
+  };
+  const sel = titles[picked];
+  const isCoachActive = picked === 'coach' && hasCoachPick;
+  return (
+    <div style={{ margin:'10px 14px 0', padding:'11px 14px 11px', background:C.card, borderRadius:14, border:`1px solid ${C.border}`, height:160, boxSizing:'border-box', display:'flex', flexDirection:'column' }}>
+      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:8 }}>
+        <div style={{ display:'flex', alignItems:'center', gap:6 }}>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4L5 0Z" fill={isCoachActive?C.blue:C.text3}/></svg>
+          <span style={{ fontSize:10, fontWeight:800, color:isCoachActive?C.blue:C.text2, letterSpacing:'0.18em', textTransform:'uppercase' }}>{isCoachActive?"Coach's Pick":'Quick Start'}</span>
+        </div>
+        <span style={{ fontSize:10, fontWeight:700, color:C.text3, letterSpacing:'0.1em', textTransform:'uppercase' }}>Day 4 / Push-Pull-Legs</span>
+      </div>
+      <div style={{ display:'flex', gap:5, marginBottom:10 }}>
+        {chips.map(c => {
+          const isActive = c.k === picked;
+          return (
+            <button key={c.k} onClick={() => !c.disabled && setPicked(c.k)} style={{ flex:1, height:28, borderRadius:7, padding:'0 6px', display:'flex', alignItems:'center', justifyContent:'center', gap:4, background:isActive?C.blueGhost:C.cardHi, border:`1px solid ${isActive?'rgba(31,122,255,0.55)':C.borderHi}`, color:c.disabled?C.text4:(isActive?C.blue:C.text2), fontSize:11, fontWeight:800, letterSpacing:'0.04em', cursor:c.disabled?'not-allowed':'pointer', opacity:c.disabled?0.5:1, whiteSpace:'nowrap' }}>
+              {c.star && (<svg width="8" height="8" viewBox="0 0 10 10"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4L5 0Z" fill={c.disabled?C.text4:(isActive?C.blue:C.text2)}/></svg>)}
+              {c.l}
+            </button>
+          );
+        })}
+      </div>
+      <div style={{ flex:1, display:'flex', flexDirection:'column', justifyContent:'center', minHeight:0 }}>
+        <div style={{ fontSize:17, fontWeight:800, color:sel.freestyle?C.text2:C.text, letterSpacing:'-0.02em', marginBottom:2, lineHeight:1.1 }}>{sel.name}</div>
+        <div style={{ fontSize:11, color:C.text3, fontWeight:600, lineHeight:1.3, ...(sel.freestyle?{}:num) }}>{sel.meta}</div>
+      </div>
+      <div style={{ display:'flex', gap:8, marginTop:8 }}>
+        <button style={{ flex:1, height:42, borderRadius:10, background:C.blue, border:'none', color:'#fff', fontSize:14, fontWeight:800, letterSpacing:'0.04em', display:'flex', alignItems:'center', justifyContent:'center', gap:8, cursor:'pointer', boxShadow:`0 0 0 1px ${C.blue}, 0 4px 14px rgba(31,122,255,0.35)` }}>
+          <svg width="10" height="12" viewBox="0 0 11 13" fill="none"><path d="M0.5 0.5L10.5 6.5L0.5 12.5V0.5Z" fill="#fff"/></svg>
+          {sel.freestyle?'START FREESTYLE':'START WORKOUT'}
+        </button>
+        <button style={{ width:42, height:42, borderRadius:10, background:C.cardHi, border:`1px solid ${C.borderHi}`, display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer', padding:0 }} title="Preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8C1 8 3.5 3 8 3C12.5 3 15 8 15 8C15 8 12.5 13 8 13C3.5 13 1 8 1 8Z" stroke={C.text2} strokeWidth="1.6" strokeLinejoin="round"/><circle cx="8" cy="8" r="2.2" stroke={C.text2} strokeWidth="1.6"/></svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function NutritionCard() {
+  const macros = [
+    { k:'PROTEIN', v:96, t:180, color:C.blue }, { k:'CARBS', v:142, t:240, color:C.blue }, { k:'FAT', v:38, t:70, color:C.blue },
+  ];
+  const cal = { v:1380, t:2400 };
+  const left = cal.t - cal.v;
+  return (
+    <div style={{ margin:'10px 14px 0', padding:'10px 14px 8px', background:C.card, borderRadius:14, border:`1px solid ${C.border}` }}>
+      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:4 }}>
+        <span style={{ fontSize:10, fontWeight:800, color:C.text2, letterSpacing:'0.18em', textTransform:'uppercase' }}>Nutrition</span>
+        <span style={{ ...num, fontSize:10, fontWeight:700, color:C.orange, padding:'2px 6px', borderRadius:4, background:'rgba(255,159,10,0.12)', letterSpacing:'0.06em', textTransform:'uppercase' }}>{left.toLocaleString()} kcal left</span>
+      </div>
+      <div style={{ display:'flex', alignItems:'baseline', gap:5, marginBottom:8 }}>
+        <span style={{ ...num, fontSize:26, fontWeight:900, color:C.text, letterSpacing:'-0.03em', lineHeight:1 }}>{cal.v.toLocaleString()}</span>
+        <span style={{ ...num, fontSize:13, fontWeight:700, color:C.text3 }}>/ {cal.t.toLocaleString()}</span>
+        <span style={{ fontSize:10, fontWeight:700, color:C.text4, letterSpacing:'0.08em', textTransform:'uppercase', marginLeft:1 }}>kcal</span>
+      </div>
+      <div style={{ display:'flex', flexDirection:'column', gap:5, marginBottom:8 }}>
+        {macros.map((m, i) => {
+          const pct = Math.min(100, (m.v/m.t)*100);
+          return (
+            <div key={i} style={{ display:'flex', alignItems:'center', gap:10 }}>
+              <span style={{ fontSize:9, fontWeight:800, color:C.text3, letterSpacing:'0.1em', width:50 }}>{m.k}</span>
+              <div style={{ flex:1, height:7, background:C.borderHi, borderRadius:2, overflow:'hidden', position:'relative' }}>
+                <div style={{ height:'100%', width:`${pct}%`, background:m.color, borderRadius:2 }} />
+              </div>
+              <div style={{ display:'flex', alignItems:'baseline', gap:2, ...num, minWidth:64, justifyContent:'flex-end' }}>
+                <span style={{ fontSize:12, fontWeight:800, color:C.text }}>{m.v}</span>
+                <span style={{ fontSize:10, fontWeight:600, color:C.text4 }}>/ {m.t}g</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <button style={{ width:'100%', height:32, borderRadius:8, background:C.blueGhost, border:`1px solid rgba(31,122,255,0.30)`, color:C.blue, fontSize:12, fontWeight:800, letterSpacing:'0.1em', display:'flex', alignItems:'center', justifyContent:'center', gap:6, cursor:'pointer', textTransform:'uppercase' }}>
+        <svg width="11" height="11" viewBox="0 0 11 11"><path d="M5.5 1V10M1 5.5H10" stroke={C.blue} strokeWidth="2" strokeLinecap="round"/></svg>
+        Log meal
+      </button>
+    </div>
+  );
+}
+
+function CoachThread() {
+  return (
+    <div style={{ margin:'10px 14px 0', padding:'10px 12px 10px', background:C.card, borderRadius:14, border:`1px solid ${C.border}` }}>
+      <div style={{ display:'flex', alignItems:'flex-start', gap:10 }}>
+        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:5, paddingTop:1 }}>
+          <div style={{ width:34, height:34, borderRadius:8, background:`linear-gradient(135deg, ${C.blue} 0%, ${C.blueDim} 100%)`, display:'flex', alignItems:'center', justifyContent:'center', border:`1px solid ${C.blue}`, boxShadow:`0 0 0 1px ${C.blueGhost}, 0 2px 8px rgba(31,122,255,0.25)`, position:'relative' }}>
+            <span style={{ fontSize:14, fontWeight:900, color:'#fff', letterSpacing:'-0.02em', fontFamily:'ui-monospace, "SF Mono", monospace' }}>AF</span>
+            <div style={{ position:'absolute', bottom:-2, right:-2, width:9, height:9, borderRadius:'50%', background:C.green, border:`2px solid ${C.card}` }} />
+          </div>
+        </div>
+        <div style={{ flex:1, minWidth:0 }}>
+          <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:5 }}>
+            <span style={{ fontSize:11, fontWeight:800, color:C.text, letterSpacing:'0.04em' }}>COACH</span>
+            <span style={{ fontSize:9, fontWeight:700, color:C.green, padding:'1px 5px', borderRadius:3, background:'rgba(48,209,88,0.12)', border:`1px solid rgba(48,209,88,0.22)`, letterSpacing:'0.08em' }}>NOTICED 2</span>
+            <span style={{ flex:1 }} />
+            <span style={{ ...num, fontSize:10, fontWeight:600, color:C.text3 }}>2h ago</span>
+          </div>
+          <div style={{ display:'flex', flexDirection:'column', gap:4, marginBottom:8 }}>
+            <CoachLine icon={<svg width="11" height="11" viewBox="0 0 11 11"><path d="M1 8L4.5 4.5L7 7L10 3" stroke={C.green} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/><path d="M7 3H10V6" stroke={C.green} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>}
+              text={<><b style={{ color:C.text, fontWeight:700 }}>Leg curl 70×8</b> solid — up from 90×6 tough on May 9. Reset's working.</>} />
+            <CoachLine icon={<svg width="11" height="11" viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.2" stroke={C.orange} strokeWidth="1.5" fill="none"/><path d="M5.5 3V5.5L7 7" stroke={C.orange} strokeWidth="1.5" strokeLinecap="round"/></svg>}
+              text={<>Protein at <b style={{ color:C.text, fontWeight:700 }}>96g</b> by 12:30 — likely short of 180g target. Push earlier today.</>} />
+          </div>
+          <div style={{ display:'flex', gap:6 }}>
+            <QuickAction icon={<svg width="11" height="11" viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3" stroke={C.text} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>} label="Got it" />
+            <QuickAction icon={<svg width="11" height="11" viewBox="0 0 12 12"><path d="M4 4.5C4 3.1 4.9 2 6 2C7.1 2 8 2.9 8 4C8 5 7 5.5 6.5 6L6 7M6 9.5V9.6" stroke={C.text} strokeWidth="1.6" strokeLinecap="round" fill="none"/></svg>} label="Why?" />
+            <QuickAction icon={<svg width="11" height="11" viewBox="0 0 12 12"><path d="M2 4H10M2 6H8M2 8H10" stroke={C.text} strokeWidth="1.6" strokeLinecap="round"/></svg>} label="Reply" primary />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CoachLine({ icon, text }) {
+  return (
+    <div style={{ display:'flex', alignItems:'flex-start', gap:7 }}>
+      <div style={{ width:11, paddingTop:4, flexShrink:0 }}>{icon}</div>
+      <div style={{ fontSize:12, lineHeight:1.35, color:C.text2, letterSpacing:'-0.005em' }}>{text}</div>
+    </div>
+  );
+}
+
+function QuickAction({ icon, label, primary }) {
+  return (
+    <button style={{ display:'flex', alignItems:'center', gap:5, padding:'5px 9px', borderRadius:6, background:primary?C.blueGhost:C.cardHi, border:`1px solid ${primary?'rgba(31,122,255,0.35)':C.borderHi}`, color:primary?C.blue:C.text2, fontSize:11, fontWeight:700, letterSpacing:'0.04em', cursor:'pointer' }}>
+      {icon}<span>{label}</span>
+    </button>
+  );
+}
+
+function BottomNav() {
+  const tabs = [
+    { k:'workout', l:'Workout', i:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="1.5" y="9" width="2.5" height="6" rx="1" fill="currentColor"/><rect x="20" y="9" width="2.5" height="6" rx="1" fill="currentColor"/><rect x="4.5" y="7.5" width="2.5" height="9" rx="1" fill="currentColor"/><rect x="17" y="7.5" width="2.5" height="9" rx="1" fill="currentColor"/><rect x="7" y="11" width="10" height="2" rx="1" fill="currentColor"/></svg> },
+    { k:'nutrition', l:'Nutrition', i:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 2v8a2 2 0 002 2v10M7 2h2v6M9 8h2V2M11 2v8a2 2 0 01-2 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 2C14 2 14 7 14 9c0 2 1 3 2 3v10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+    { k:'home', l:'Home', active:true, i:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 11l9-7 9 7v9a2 2 0 01-2 2h-4v-7h-6v7H5a2 2 0 01-2-2v-9z" fill="currentColor"/></svg> },
+    { k:'progress', l:'Progress', i:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 17l5-5 4 4 8-9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 7h6v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+    { k:'coach', l:'Coach', i:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v9a2 2 0 01-2 2H8l-4 4V5z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/></svg> },
+  ];
+  return (
+    <div style={{ position:'absolute', left:12, right:12, bottom:22, height:64, borderRadius:18, background:'rgba(20,20,24,0.92)', backdropFilter:'blur(20px) saturate(180%)', WebkitBackdropFilter:'blur(20px) saturate(180%)', border:`1px solid ${C.borderHi}`, boxShadow:'0 8px 24px rgba(0,0,0,0.6)', display:'flex', alignItems:'center', justifyContent:'space-around', padding:'0 6px' }}>
+      {tabs.map(t => (
+        <div key={t.k} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:3, color:t.active?C.blue:C.text3, padding:'6px 4px', flex:1 }}>
+          {t.i}
+          <span style={{ fontSize:9.5, fontWeight:700, letterSpacing:'0.04em' }}>{t.l}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function HomeScreen() {
+  const TWEAK_DEFAULTS = { hasCoachPick:true, showMomentumBreakdown:true };
+  const [t] = useTweaks(TWEAK_DEFAULTS);
+  return (
+    <div data-screen-label="Home" style={{ width:'100%', height:'100%', background:C.bg, color:C.text, fontFamily:'-apple-system, "SF Pro Text", "Inter", system-ui, sans-serif', WebkitFontSmoothing:'antialiased', position:'relative', paddingTop:52 }}>
+      <Header />
+      <MomentumHero showBreakdown={t.showMomentumBreakdown} />
+      <CoachRecommends hasCoachPick={t.hasCoachPick} />
+      <NutritionCard />
+      <CoachThread />
+      <BottomNav />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('app')).render(<HomeScreen />);
+
+// Scale the phone to fit whatever container the iframe gives us.
+function fitPhone() {
+  const phone = document.getElementById('phone');
+  const pad = 28;
+  const sx = (window.innerWidth - pad) / 390;
+  const sy = (window.innerHeight - pad) / 844;
+  const s = Math.min(1.06, sx, sy);
+  phone.style.transform = `scale(${s})`;
+}
+window.addEventListener('resize', fitPhone);
+fitPhone();
+    </script>
+</body>
+</html>

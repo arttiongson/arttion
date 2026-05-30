@@ -1,40 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="solaire">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art Tiongson — Finance × Automation</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='22' font-weight='400' fill='%237a9e8e'%3EA%3C/text%3E%3C/svg%3E">
-    <meta name="description" content="Art Tiongson builds systems that eliminate inefficiency. Product & Systems Analyst.">
-    <meta property="og:title" content="Art Tiongson — Finance × Automation">
-    <meta property="og:description" content="AI-augmented builder at the intersection of finance and operations. Product & Systems Analyst.">
+    <title>Art Tiongson · Finance × Automation</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='22' font-weight='400' fill='%23B8502A'%3EA%3C/text%3E%3C/svg%3E">
+    <meta name="description" content="Art Tiongson directs AI agents to build production software. Operations and accounting background, with a focus on agentic workflows.">
+    <meta property="og:title" content="Art Tiongson · Operations Builder Directing Agentic AI">
+    <meta property="og:description" content="Art Tiongson directs AI agents to build production software. Operations and accounting background, with a focus on agentic workflows.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://arttiongson.github.io/arttion/">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Art Tiongson — Finance × Automation">
-    <meta name="twitter:description" content="AI-augmented builder at the intersection of finance and operations.">
+    <meta name="twitter:title" content="Art Tiongson · Operations Builder Directing Agentic AI">
+    <meta name="twitter:description" content="Art Tiongson directs AI agents to build production software. Operations and accounting background, with a focus on agentic workflows.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
+            /* VERDANT (default): refined sage */
+            --bg-rgb: 10,15,13;
+            --surface-rgb: 17,25,22;
+            --accent-rgb: 122,158,142;
+            --accent-muted-rgb: 92,122,109;
+            --accent-light-rgb: 155,184,168;
             --bg-dark: #0a0f0d;
             --bg-elevated: #111916;
             --accent: #7a9e8e;
             --accent-muted: #5c7a6d;
             --accent-light: #9bb8a8;
-            --accent-glow: rgba(122, 158, 142, 0.12);
+            --accent-glow: rgba(var(--accent-rgb), 0.12);
             --text-primary: #e8e4df;
             --text-secondary: #9b9790;
             --text-muted: #6b6761;
             --font-display: 'Cormorant Garamond', 'Georgia', serif;
             --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
             --max-width: 1280px;
+            --mesh-blend: screen;
+            --mesh-opacity: 1;
+            --grain-opacity: 0.026;
+            --portrait-grad: linear-gradient(160deg, #2a3631 0%, #161d1a 100%);
         }
 
-        html { scroll-behavior: smooth; }
+        /* ATELIER: charcoal-navy + copper-peach */
+        html[data-theme="atelier"] {
+            --bg-rgb: 20,22,27;
+            --surface-rgb: 27,30,37;
+            --accent-rgb: 224,165,125;
+            --accent-muted-rgb: 176,122,82;
+            --accent-light-rgb: 240,198,164;
+            --bg-dark: #14161B;
+            --bg-elevated: #1B1E25;
+            --accent: #E0A57D;
+            --accent-muted: #B07A52;
+            --accent-light: #F0C6A4;
+            --text-primary: #ECE4D8;
+            --text-secondary: #A39C8E;
+            --text-muted: #6A6358;
+            --font-display: 'Spectral', 'Georgia', serif;
+            --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+            --portrait-grad: linear-gradient(160deg, #2E2620 0%, #15171C 100%);
+            --aurora-filter: hue-rotate(-55deg) saturate(0.7) brightness(1.05);
+        }
+
+        /* SOLAIRE: warm cream + ember (light) */
+        html[data-theme="solaire"] {
+            --bg-rgb: 242,236,224;
+            --surface-rgb: 255,252,245;
+            --accent-rgb: 184,80,42;
+            --accent-muted-rgb: 138,61,32;
+            --accent-light-rgb: 201,104,58;
+            --bg-dark: #F2ECE0;
+            --bg-elevated: #E9E1D1;
+            --accent: #B8502A;
+            --accent-muted: #8A3D20;
+            --accent-light: #A8431F;
+            --text-primary: #221C15;
+            --text-secondary: #5C5347;
+            --text-muted: #8A8073;
+            --font-display: 'Fraunces', 'Georgia', serif;
+            --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+            --mesh-blend: multiply;
+            --mesh-opacity: 0.55;
+            --grain-opacity: 0.04;
+            --portrait-grad: linear-gradient(160deg, #E7DAC4 0%, #D8C7AC 100%);
+            --aurora-filter: hue-rotate(-60deg) saturate(0.6);
+        }
+
+        /* NOCTURNE: plum-black + champagne gold */
+        html[data-theme="nocturne"] {
+            --bg-rgb: 17,10,20;
+            --surface-rgb: 26,16,25;
+            --accent-rgb: 217,179,106;
+            --accent-muted-rgb: 168,133,74;
+            --accent-light-rgb: 232,207,160;
+            --bg-dark: #110A14;
+            --bg-elevated: #1A1019;
+            --accent: #D9B36A;
+            --accent-muted: #A8854A;
+            --accent-light: #E8CFA0;
+            --text-primary: #EFE6DA;
+            --text-secondary: #A89CA4;
+            --text-muted: #6E6370;
+            --font-display: 'Cormorant Garamond', 'Georgia', serif;
+            --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+            --portrait-grad: linear-gradient(160deg, #2A1A2E 0%, #140C18 100%);
+            --aurora-filter: hue-rotate(-30deg) saturate(0.65) brightness(0.95);
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
         body {
             font-family: var(--font-body);
@@ -59,7 +135,7 @@
         .preloader-inner { width: min(88%, 520px); display: flex; flex-direction: column; gap: 0.85rem; }
 
         .skel {
-            background: linear-gradient(90deg, var(--bg-elevated) 25%, rgba(122,158,142,0.05) 50%, var(--bg-elevated) 75%);
+            background: linear-gradient(90deg, var(--bg-elevated) 25%, rgba(var(--accent-rgb),0.05) 50%, var(--bg-elevated) 75%);
             background-size: 400% 100%; animation: shimmer 1.6s ease-in-out infinite; border-radius: 4px;
         }
         .skel--xs { height: 10px; width: 30%; }
@@ -76,6 +152,7 @@
         .mesh-bg {
             position: fixed; inset: 0; z-index: 0; pointer-events: none;
             overflow: hidden;
+            opacity: var(--mesh-opacity);
         }
 
         .mesh-bg::before,
@@ -84,12 +161,12 @@
             position: absolute;
             border-radius: 50%;
             filter: blur(100px);
-            mix-blend-mode: screen;
+            mix-blend-mode: var(--mesh-blend);
         }
 
         .mesh-bg::before {
             width: 1100px; height: 1100px;
-            background: radial-gradient(circle, rgba(122,158,142,0.5) 0%, rgba(92,122,109,0.2) 40%, transparent 70%);
+            background: radial-gradient(circle, rgba(var(--accent-rgb),0.5) 0%, rgba(var(--accent-muted-rgb),0.2) 40%, transparent 70%);
             top: -25%;
             left: -10%;
             animation: meshFloat 22s ease-in-out infinite;
@@ -97,7 +174,7 @@
 
         .mesh-bg::after {
             width: 1200px; height: 1200px;
-            background: radial-gradient(circle, rgba(155,184,168,0.35) 0%, rgba(122,158,142,0.14) 45%, transparent 70%);
+            background: radial-gradient(circle, rgba(var(--accent-light-rgb),0.35) 0%, rgba(var(--accent-rgb),0.14) 45%, transparent 70%);
             bottom: -30%;
             right: -15%;
             animation: meshFloat 28s ease-in-out infinite reverse;
@@ -108,8 +185,8 @@
             width: 900px; height: 900px;
             border-radius: 50%;
             filter: blur(80px);
-            mix-blend-mode: screen;
-            background: radial-gradient(circle, rgba(122,158,142,0.35) 0%, rgba(92,122,109,0.12) 50%, transparent 70%);
+            mix-blend-mode: var(--mesh-blend);
+            background: radial-gradient(circle, rgba(var(--accent-rgb),0.35) 0%, rgba(var(--accent-muted-rgb),0.12) 50%, transparent 70%);
             top: 30%;
             left: 35%;
             animation: meshFloat2 20s ease-in-out infinite;
@@ -120,8 +197,8 @@
             width: 800px; height: 800px;
             border-radius: 50%;
             filter: blur(100px);
-            mix-blend-mode: screen;
-            background: radial-gradient(circle, rgba(155,184,168,0.3) 0%, transparent 65%);
+            mix-blend-mode: var(--mesh-blend);
+            background: radial-gradient(circle, rgba(var(--accent-light-rgb),0.3) 0%, transparent 65%);
             top: 60%;
             left: 10%;
             animation: meshFloat 26s ease-in-out infinite;
@@ -134,7 +211,8 @@
             inset: 0;
             background: url('bg-aurora-1.webp') center/cover no-repeat;
             opacity: 0.18;
-            mix-blend-mode: screen;
+            mix-blend-mode: var(--mesh-blend);
+            filter: var(--aurora-filter, none);
         }
 
         @keyframes meshFloat {
@@ -150,7 +228,7 @@
 
         /* ── GRAIN + DOT GRID ─────────────────── */
         .grain {
-            position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.026;
+            position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: var(--grain-opacity);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
             background-size: 200px 200px;
         }
@@ -158,7 +236,7 @@
         .dot-grid {
             position: fixed; inset: 0; z-index: 1; pointer-events: none;
             opacity: 0.035;
-            background-image: radial-gradient(circle, rgba(122,158,142,0.4) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(var(--accent-rgb),0.4) 1px, transparent 1px);
             background-size: 32px 32px;
         }
 
@@ -172,9 +250,9 @@
             position: sticky; top: 0; z-index: 100;
             display: flex; align-items: center; justify-content: center;
             padding: 1.15rem clamp(1.5rem, 4vw, 3rem);
-            background: rgba(10, 15, 13, 0.55);
+            background: rgba(var(--bg-rgb), 0.55);
             backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-            border-bottom: 1px solid rgba(122, 158, 142, 0.05);
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.05);
         }
 
         .nav-links { display: flex; gap: clamp(1.8rem, 3.5vw, 2.8rem); list-style: none; align-items: center; }
@@ -194,11 +272,11 @@
         .nav-links a:hover { color: var(--text-primary); }
         .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
 
-        .nav-divider { width: 1px; height: 16px; background: rgba(122,158,142,0.12); }
+        .nav-divider { width: 1px; height: 16px; background: rgba(var(--accent-rgb),0.12); }
 
         .nav-contact {
             font-weight: 500 !important; color: var(--accent) !important;
-            border: 1px solid rgba(122,158,142,0.22); padding: 0.55rem 1.35rem;
+            border: 1px solid rgba(var(--accent-rgb),0.22); padding: 0.55rem 1.35rem;
             transition: all 0.3s ease !important;
         }
         .nav-contact:hover { background: var(--accent-glow); border-color: var(--accent); }
@@ -233,11 +311,11 @@
         /* ── GLOW CARD UTILITY ─────────────────── */
         .glow-card {
             position: relative; overflow: hidden;
-            box-shadow: inset 0 1px 0 rgba(122,158,142,0.06);
+            box-shadow: inset 0 1px 0 rgba(var(--accent-rgb),0.06);
         }
         .glow-card::before {
             content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px;
-            background: radial-gradient(280px circle at var(--mx,50%) var(--my,50%), rgba(122,158,142,0.18), transparent 55%);
+            background: radial-gradient(280px circle at var(--mx,50%) var(--my,50%), rgba(var(--accent-rgb),0.18), transparent 55%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
@@ -262,15 +340,38 @@
             text-transform: uppercase; color: var(--accent);
             display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
         }
-        .hero-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+        .hero-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s; }
+        .hero-label.visible::before, .reveal.visible .hero-label::before { transform: scaleX(1); }
+        .hero-label.reveal.visible::before { transform: scaleX(1); }
 
         .hero-name {
             font-family: var(--font-display);
             font-size: clamp(3.8rem, 9vw, 8rem);
             font-weight: 400; line-height: 0.92; letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-light));
+            background: linear-gradient(110deg, var(--text-primary) 20%, var(--accent-light) 42%, #ffffff 50%, var(--accent-light) 58%, var(--text-primary) 80%);
+            background-size: 220% 100%;
             -webkit-background-clip: text; background-clip: text; color: transparent;
+            animation: nameSheen 7s ease-in-out infinite;
+        }
+        @keyframes nameSheen { 0%,100% { background-position: 140% 0; } 50% { background-position: -40% 0; } }
+        @media (prefers-reduced-motion: reduce) { .hero-name { animation: none; } }
+
+        /* Rotating word in tagline */
+        .word-rotate {
+            display: inline-flex; flex-direction: column; height: 1.25em;
+            overflow: hidden; vertical-align: bottom; position: relative;
+        }
+        .word-rotate span {
+            display: block; height: 1.25em; line-height: 1.25em;
+            color: var(--accent-light); font-weight: 500;
+            animation: wordCycle 9s cubic-bezier(0.7,0,0.3,1) infinite;
+        }
+        @keyframes wordCycle {
+            0%, 26% { transform: translateY(0); }
+            33%, 59% { transform: translateY(-1.25em); }
+            66%, 92% { transform: translateY(-2.5em); }
+            100% { transform: translateY(-3.75em); }
         }
 
         .hero-title {
@@ -304,7 +405,7 @@
         }
         .hero-cta:hover {
             background: var(--accent-light);
-            box-shadow: 0 8px 32px rgba(122,158,142,0.3), 0 0 60px rgba(122,158,142,0.1);
+            box-shadow: 0 8px 32px rgba(var(--accent-rgb),0.3), 0 0 60px rgba(var(--accent-rgb),0.1);
             transform: scale(1.03) translateY(-1px);
         }
         .hero-cta svg { width: 14px; height: 14px; transition: transform 0.3s ease; }
@@ -325,85 +426,61 @@
         /* Hero geometric decoration */
         .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: 360px; }
 
-        .hero-geo {
-            position: relative; width: 280px; height: 280px;
+        /* Hero portrait */
+        .hero-portrait {
+            position: relative;
+            width: min(360px, 80vw);
+            aspect-ratio: 4 / 5;
+            animation: portraitFloat 6s ease-in-out infinite;
         }
-
-        .hero-geo-ring {
+        @keyframes portraitFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @media (prefers-reduced-motion: reduce) { .hero-portrait { animation: none; } }
+        .hero-portrait-photo {
             position: absolute; inset: 0;
-            border: 1px solid rgba(122,158,142,0.08);
-            border-radius: 16px;
-        }
-        .hero-geo-ring:nth-child(1) {
-            animation: geoSpin 30s linear infinite;
-            border-color: rgba(122,158,142,0.06);
-        }
-        .hero-geo-ring:nth-child(2) {
-            inset: 28px;
-            border-color: rgba(122,158,142,0.12);
-            border-radius: 20px;
-            animation: geoSpin 24s linear infinite reverse;
-        }
-        .hero-geo-ring:nth-child(3) {
-            inset: 60px;
-            border-color: rgba(122,158,142,0.2);
-            border-radius: 24px;
-            animation: geoSpin 18s linear infinite;
-        }
-        .hero-geo-ring:nth-child(4) {
-            inset: 96px;
-            border-color: rgba(122,158,142,0.08);
-            border-radius: 50%;
-            animation: geoSpin 22s linear infinite reverse;
-            border-style: dashed;
-        }
-
-        .hero-geo-dot {
-            position: absolute;
-            width: 6px; height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-            top: 50%; left: -3px;
-            box-shadow: 0 0 12px rgba(122,158,142,0.5), 0 0 30px rgba(122,158,142,0.2);
-            animation: geoDotOrbit 15s linear infinite;
-            transform-origin: 143px 0;
-        }
-
-        .hero-geo-dot-2 {
-            position: absolute;
-            width: 4px; height: 4px;
-            background: var(--accent-light);
-            border-radius: 50%;
-            top: 50%; right: -2px;
-            box-shadow: 0 0 8px rgba(155,184,168,0.4);
-            animation: geoDotOrbit 20s linear infinite reverse;
-            transform-origin: -138px 0;
-        }
-
-        .hero-geo-center {
-            position: absolute;
-            inset: 110px;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .hero-geo-center-ring {
             width: 100%; height: 100%;
-            border: 1px solid rgba(122,158,142,0.15);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            border-radius: 16px;
+            border: 1px solid rgba(var(--accent-rgb),0.18);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.45), inset 0 1px 0 rgba(var(--accent-rgb),0.06);
+            overflow: hidden;
+            background: var(--portrait-grad);
+            object-fit: cover; display: block;
         }
-
-        .hero-geo-center-dot {
-            width: 8px; height: 8px;
+        /* one quiet orbiting ring behind the photo: a nod to the original */
+        .hero-portrait-ring {
+            position: absolute; inset: -26px;
+            border: 1px dashed rgba(var(--accent-rgb),0.16);
+            border-radius: 22px;
+            animation: geoSpin 60s linear infinite;
+            pointer-events: none;
+        }
+        .hero-portrait-dot {
+            position: absolute; top: 50%; left: -30px;
+            width: 6px; height: 6px; border-radius: 50%;
             background: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(122,158,142,0.6), 0 0 40px rgba(122,158,142,0.15);
-            animation: geoPulse 3s ease-in-out infinite;
+            box-shadow: 0 0 12px rgba(var(--accent-rgb),0.5), 0 0 30px rgba(var(--accent-rgb),0.2);
+            transform-origin: 216px 0;
+            animation: geoSpin 28s linear infinite;
+            pointer-events: none;
+        }
+        .hero-portrait-tag {
+            position: absolute; left: 14px; bottom: 14px; z-index: 2;
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.7rem; font-weight: 500; letter-spacing: 0.04em;
+            color: var(--text-primary);
+            padding: 0.4rem 0.75rem; border-radius: 100px;
+            background: rgba(var(--bg-rgb),0.6);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(var(--accent-rgb),0.16);
+            pointer-events: none;
+        }
+        .hero-portrait-tag .dot {
+            width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+            animation: geoPulse 2.4s ease-in-out infinite;
         }
 
         @keyframes geoSpin { to { transform: rotate(360deg); } }
-        @keyframes geoDotOrbit { to { transform: rotate(360deg); } }
-        @keyframes geoPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.4);opacity:0.6} }
+        @keyframes geoPulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
         /* Scroll hint */
         .scroll-hint {
@@ -421,7 +498,7 @@
 
         .hero-socials {
             position: absolute; bottom: 0; left: 0; right: 0;
-            border-top: 1px solid rgba(122,158,142,0.05);
+            border-top: 1px solid rgba(var(--accent-rgb),0.05);
             padding: 1.1rem clamp(1.5rem, 4vw, 3rem);
             display: flex; justify-content: center; gap: 1.5rem;
         }
@@ -429,13 +506,13 @@
         .hero-social-link {
             color: var(--text-muted); transition: all 0.35s ease;
             display: flex; align-items: center; justify-content: center;
-            width: 38px; height: 38px; border: 1px solid rgba(122,158,142,0.06);
+            width: 38px; height: 38px; border: 1px solid rgba(var(--accent-rgb),0.06);
             text-decoration: none;
         }
         .hero-social-link:hover {
             color: var(--accent-light); border-color: var(--accent);
             background: var(--accent-glow); transform: translateY(-3px) scale(1.08);
-            box-shadow: 0 6px 20px rgba(122,158,142,0.15);
+            box-shadow: 0 6px 20px rgba(var(--accent-rgb),0.15);
         }
 
         /* ── SECTION ELEVATED BG WRAPPER ──────── */
@@ -483,11 +560,11 @@
 
         /* Career Snapshot Card (replaces SVG infographic) */
         .snapshot-card {
-            background: rgba(17,25,22,0.7);
-            border: 1px solid rgba(122,158,142,0.12);
+            background: rgba(var(--surface-rgb),0.7);
+            border: 1px solid rgba(var(--accent-rgb),0.12);
             border-radius: 12px;
             padding: 1.8rem;
-            box-shadow: inset 0 1px 0 rgba(122,158,142,0.06);
+            box-shadow: inset 0 1px 0 rgba(var(--accent-rgb),0.06);
         }
 
         .snapshot-label {
@@ -497,7 +574,7 @@
 
         .snapshot-hero-metric {
             margin-bottom: 1.2rem; padding-bottom: 1.2rem;
-            border-bottom: 1px solid rgba(122,158,142,0.08);
+            border-bottom: 1px solid rgba(var(--accent-rgb),0.08);
         }
         .snapshot-hero-value {
             font-family: var(--font-display);
@@ -512,7 +589,7 @@
         .snapshot-before-after {
             display: flex; align-items: center; gap: 0.6rem;
             margin-bottom: 1.2rem; padding-bottom: 1.2rem;
-            border-bottom: 1px solid rgba(122,158,142,0.08);
+            border-bottom: 1px solid rgba(var(--accent-rgb),0.08);
         }
         .snapshot-ba-value {
             font-family: var(--font-display);
@@ -554,7 +631,7 @@
             font-weight: 400; font-style: italic;
             color: var(--accent-light); line-height: 1.6;
             margin-bottom: 2rem; padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(122,158,142,0.1);
+            border-bottom: 1px solid rgba(var(--accent-rgb),0.1);
         }
 
         .about-text {
@@ -571,7 +648,7 @@
             font-weight: 400; font-style: italic;
             color: var(--accent-light); line-height: 1.6;
             padding: 1.5rem 0 1.5rem 1.5rem;
-            border-left: 2px solid rgba(122,158,142,0.3);
+            border-left: 2px solid rgba(var(--accent-rgb),0.3);
             margin: 2rem 0;
         }
 
@@ -579,10 +656,10 @@
         .process-diagram {
             margin: 2.5rem 0;
             padding: 2rem;
-            border: 1px solid rgba(122,158,142,0.1);
+            border: 1px solid rgba(var(--accent-rgb),0.1);
             border-radius: 12px;
-            background: rgba(17,25,22,0.5);
-            box-shadow: inset 0 1px 0 rgba(122,158,142,0.06);
+            background: rgba(var(--surface-rgb),0.5);
+            box-shadow: inset 0 1px 0 rgba(var(--accent-rgb),0.06);
         }
 
         .process-diagram-label {
@@ -598,7 +675,7 @@
         .process-side-label {
             font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
             text-transform: uppercase; margin-bottom: 0.5rem; padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(122,158,142,0.08);
+            border-bottom: 1px solid rgba(var(--accent-rgb),0.08);
         }
         .process-side-label.old { color: var(--text-muted); }
         .process-side-label.new { color: var(--accent-light); }
@@ -607,7 +684,7 @@
             display: flex; align-items: center; gap: 0.75rem;
             padding: 0.6rem 0.8rem; border-radius: 6px;
             font-size: 0.78rem; font-weight: 400; color: var(--text-secondary);
-            background: rgba(122,158,142,0.03); border-left: 2px solid rgba(122,158,142,0.08);
+            background: rgba(var(--accent-rgb),0.03); border-left: 2px solid rgba(var(--accent-rgb),0.08);
         }
 
         .process-step .step-num {
@@ -621,7 +698,7 @@
         .process-result {
             display: flex; align-items: center; justify-content: center; gap: 0.75rem;
             padding: 1.5rem; border-radius: 8px;
-            border: 1px solid rgba(122,158,142,0.2); background: rgba(122,158,142,0.06); height: 100%;
+            border: 1px solid rgba(var(--accent-rgb),0.2); background: rgba(var(--accent-rgb),0.06); height: 100%;
         }
 
         .process-result-icon {
@@ -656,20 +733,20 @@
         .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 
         .skills-group {
-            background: rgba(17,25,22,0.5);
-            border: 1px solid rgba(122,158,142,0.06);
+            background: rgba(var(--surface-rgb),0.5);
+            border: 1px solid rgba(var(--accent-rgb),0.06);
             border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: inset 0 1px 0 rgba(122,158,142,0.06);
+            box-shadow: inset 0 1px 0 rgba(var(--accent-rgb),0.06);
             transition: border-color 0.4s ease, box-shadow 0.4s ease;
         }
-        .skills-group:hover { border-color: rgba(122,158,142,0.12); }
+        .skills-group:hover { border-color: rgba(var(--accent-rgb),0.12); }
 
         .skills-group-title {
             font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em;
             text-transform: uppercase; color: var(--text-muted);
             margin-bottom: 1rem; padding-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(122,158,142,0.08);
+            border-bottom: 1px solid rgba(var(--accent-rgb),0.08);
             display: flex; align-items: center; gap: 0.5rem;
         }
         .skills-group-title svg { color: var(--accent); flex-shrink: 0; opacity: 0.6; }
@@ -680,15 +757,90 @@
             font-family: var(--font-body);
             font-size: 0.7rem; font-weight: 500; letter-spacing: 0.04em;
             color: var(--accent);
-            border: 1px solid rgba(122,158,142,0.15);
+            border: 1px solid rgba(var(--accent-rgb),0.15);
             padding: 0.38rem 0.85rem; border-radius: 100px;
             transition: all 0.3s ease;
         }
         .skills-tag:hover {
             background: var(--accent-glow);
-            border-color: rgba(122,158,142,0.35);
-            box-shadow: 0 0 12px rgba(122,158,142,0.08);
+            border-color: rgba(var(--accent-rgb),0.35);
+            box-shadow: 0 0 12px rgba(var(--accent-rgb),0.08);
         }
+
+        /* ── HOW I WORK (operating model) ──────── */
+        .howiwork { position: relative; padding: clamp(5rem, 8vw, 8rem) clamp(1.5rem, 4vw, 3rem); max-width: var(--max-width); margin: 0 auto; }
+        .howiwork-label {
+            font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em;
+            text-transform: uppercase; color: var(--accent);
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;
+        }
+        .howiwork-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+        .howiwork-heading {
+            font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 400; color: var(--text-primary); line-height: 1.15; margin-bottom: 1.25rem;
+        }
+        .howiwork-lead {
+            font-size: clamp(1rem, 1.6vw, 1.2rem); font-weight: 300; line-height: 1.7;
+            color: var(--text-secondary); max-width: 720px; margin-bottom: 3rem;
+        }
+        .howiwork-lead strong { color: var(--text-primary); font-weight: 500; }
+        .howiwork-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+        .howiwork-card {
+            background: rgba(var(--surface-rgb),0.5);
+            border: 1px solid rgba(var(--accent-rgb),0.06);
+            border-radius: 12px; padding: 1.75rem;
+            box-shadow: inset 0 1px 0 rgba(var(--accent-rgb),0.06);
+        }
+        .howiwork-card-step {
+            font-family: var(--font-display); font-size: 1.1rem; font-weight: 500;
+            color: var(--accent); margin-bottom: 0.75rem;
+            display: flex; align-items: baseline; gap: 0.6rem;
+        }
+        .howiwork-card-step span { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: var(--text-muted); font-family: var(--font-body); }
+        .howiwork-card-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem; line-height: 1.25; }
+        .howiwork-card-desc { font-size: 0.92rem; font-weight: 300; line-height: 1.65; color: var(--text-secondary); }
+        .howiwork-card-desc strong { color: var(--text-primary); font-weight: 500; }
+        @media (max-width: 720px) { .howiwork-grid { grid-template-columns: 1fr; } }
+
+        /* ── IMPACT (proof metrics) ────────────── */
+        .impact { position: relative; padding: clamp(5rem, 8vw, 8rem) clamp(1.5rem, 4vw, 3rem); max-width: var(--max-width); margin: 0 auto; }
+        .impact-label {
+            font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em;
+            text-transform: uppercase; color: var(--accent);
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;
+        }
+        .impact-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+        .impact-heading {
+            font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 400; color: var(--text-primary); line-height: 1.15; margin-bottom: 3rem;
+        }
+        .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+        .impact-card {
+            background: rgba(var(--surface-rgb),0.5);
+            border: 1px solid rgba(var(--accent-rgb),0.06);
+            border-radius: 12px; padding: 1.75rem 1.5rem;
+            box-shadow: inset 0 1px 0 rgba(var(--accent-rgb),0.06);
+            display: flex; flex-direction: column; gap: 0.5rem;
+        }
+        .impact-value {
+            font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 3rem);
+            font-weight: 500; color: var(--accent); line-height: 1;
+        }
+        .impact-label-sm { font-size: 0.95rem; font-weight: 500; color: var(--text-primary); line-height: 1.3; }
+        .impact-desc { font-size: 0.8rem; font-weight: 300; color: var(--text-muted); line-height: 1.55; }
+        @media (max-width: 880px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .impact-grid { grid-template-columns: 1fr; } }
+
+        /* Résumé link button */
+        .contact-resume {
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+            color: var(--bg-dark); background: var(--accent);
+            padding: 0.85rem 1.8rem; border-radius: 100px; text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.25,0.1,0.25,1); margin-top: 1.5rem;
+        }
+        .contact-resume:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(var(--accent-rgb),0.28); }
+        .contact-resume svg { width: 15px; height: 15px; }
 
         /* ── WORK ──────────────────────────────── */
         .work { padding: 6rem clamp(1.5rem, 4vw, 3rem) 8rem; max-width: var(--max-width); margin: 0 auto; }
@@ -708,26 +860,26 @@
         .work-cards { display: flex; flex-direction: column; gap: 1.25rem; }
 
         .work-card {
-            background: rgba(17,25,22,0.5); border: 1px solid rgba(122,158,142,0.05);
+            background: rgba(var(--surface-rgb),0.5); border: 1px solid rgba(var(--accent-rgb),0.05);
             border-radius: 20px; padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3.5rem);
             cursor: pointer; position: relative; overflow: hidden;
             display: flex; align-items: center; justify-content: space-between;
             gap: 2rem; min-height: 170px;
             transition: border-color 0.4s ease, box-shadow 0.4s ease;
             transform-style: preserve-3d; will-change: transform;
-            box-shadow: inset 0 1px 0 rgba(122,158,142,0.06);
+            box-shadow: inset 0 1px 0 rgba(var(--accent-rgb),0.06);
         }
 
         .work-card::before {
             content: ''; position: absolute; inset: -1px; border-radius: 21px; padding: 1px;
-            background: radial-gradient(280px circle at var(--mx,50%) var(--my,50%), rgba(122,158,142,0.2), transparent 55%);
+            background: radial-gradient(280px circle at var(--mx,50%) var(--my,50%), rgba(var(--accent-rgb),0.2), transparent 55%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
             pointer-events: none; opacity: 0; transition: opacity 0.4s ease;
         }
         .work-card:hover::before { opacity: 1; }
-        .work-card:hover { border-color: rgba(122,158,142,0.12); box-shadow: 0 20px 50px rgba(0,0,0,0.3), inset 0 1px 0 rgba(122,158,142,0.06); }
+        .work-card:hover { border-color: rgba(var(--accent-rgb),0.12); box-shadow: 0 20px 50px rgba(0,0,0,0.3), inset 0 1px 0 rgba(var(--accent-rgb),0.06); }
 
         .work-card--no-modal { cursor: default; }
         .work-card--no-modal .work-card-arrow { display: none; }
@@ -735,7 +887,8 @@
         .work-card-content { position: relative; z-index: 1; flex: 1; }
 
         .work-card-type { font-size: 0.66rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem; }
-        .work-card-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.3rem); font-weight: 500; color: var(--text-primary); line-height: 1.2; margin-bottom: 0.5rem; }
+        .work-card-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.3rem); font-weight: 500; color: var(--text-primary); line-height: 1.2; margin-bottom: 0.5rem; transition: color 0.4s ease; }
+        .work-card:hover .work-card-title { color: var(--accent-light); }
         .work-card-desc { font-size: 0.86rem; font-weight: 300; color: var(--text-secondary); line-height: 1.65; max-width: 500px; }
 
         .work-card-tech {
@@ -744,20 +897,20 @@
         .work-card-pill {
             font-size: 0.6rem; font-weight: 500; letter-spacing: 0.03em;
             color: var(--accent-muted);
-            border: 1px solid rgba(122,158,142,0.12);
+            border: 1px solid rgba(var(--accent-rgb),0.12);
             padding: 0.22rem 0.6rem; border-radius: 100px;
         }
 
         .work-card-arrow {
             position: relative; z-index: 1; width: 46px; height: 46px;
-            border: 1px solid rgba(122,158,142,0.1); border-radius: 50%;
+            border: 1px solid rgba(var(--accent-rgb),0.1); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0; color: var(--text-muted); transition: all 0.35s ease;
         }
         .work-card:hover .work-card-arrow {
             border-color: var(--accent); color: var(--accent); background: var(--accent-glow);
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(122,158,142,0.15);
+            box-shadow: 0 0 20px rgba(var(--accent-rgb),0.15);
         }
 
         /* Status pill (In progress / Side project) */
@@ -772,8 +925,8 @@
         }
         .status-pill--progress {
             color: var(--accent);
-            border-color: rgba(122,158,142,0.32);
-            background: rgba(122,158,142,0.06);
+            border-color: rgba(var(--accent-rgb),0.32);
+            background: rgba(var(--accent-rgb),0.06);
             position: relative; padding-left: 1.1rem;
         }
         .status-pill--progress::before {
@@ -791,12 +944,12 @@
         /* Modal preview variants for iOS/iPadOS shots (real device bezel in image) */
         .modal-preview--gallery, .modal-preview--tablet {
             padding: 0 !important;
-            background: radial-gradient(ellipse at 50% 35%, rgba(122,158,142,0.07), transparent 62%), #070a09;
+            background: radial-gradient(ellipse at 50% 35%, rgba(var(--accent-rgb),0.07), transparent 62%), #070a09;
             border-radius: 14px 0 0 14px;
             overflow: hidden;
             position: relative;
         }
-        /* Phone gallery — horizontal scroll of full iPhone shots with real bezel */
+        /* Phone gallery: horizontal scroll of full iPhone shots with real bezel */
         .modal-preview--gallery {
             display: flex; align-items: center; justify-content: center;
         }
@@ -857,16 +1010,16 @@
             position: absolute; top: 0;
             left: clamp(1.5rem, 4vw, 3rem); right: clamp(1.5rem, 4vw, 3rem);
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(122,158,142,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb),0.2), transparent);
         }
 
         .contact-card {
             max-width: 640px; margin: 0 auto;
             padding: 3rem;
-            border: 1px solid rgba(122,158,142,0.08);
+            border: 1px solid rgba(var(--accent-rgb),0.08);
             border-radius: 16px;
-            background: rgba(17,25,22,0.4);
-            box-shadow: inset 0 1px 0 rgba(122,158,142,0.06);
+            background: rgba(var(--surface-rgb),0.4);
+            box-shadow: inset 0 1px 0 rgba(var(--accent-rgb),0.06);
         }
 
         .contact-label {
@@ -892,7 +1045,7 @@
             font-weight: 500; color: var(--accent-light);
             text-decoration: none; display: inline-block;
             padding: 0.8rem 2rem;
-            border: 1px solid rgba(122,158,142,0.2);
+            border: 1px solid rgba(var(--accent-rgb),0.2);
             border-radius: 100px;
             transition: all 0.35s ease;
             margin-bottom: 2.5rem;
@@ -901,7 +1054,7 @@
             background: var(--accent-glow);
             border-color: var(--accent);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(122,158,142,0.15);
+            box-shadow: 0 8px 24px rgba(var(--accent-rgb),0.15);
         }
 
         .contact-socials { display: flex; justify-content: center; gap: 1rem; }
@@ -909,20 +1062,20 @@
         .contact-social-link {
             color: var(--text-muted); transition: all 0.35s ease;
             display: flex; align-items: center; justify-content: center;
-            width: 42px; height: 42px; border: 1px solid rgba(122,158,142,0.08);
+            width: 42px; height: 42px; border: 1px solid rgba(var(--accent-rgb),0.08);
             text-decoration: none;
         }
         .contact-social-link:hover {
             color: var(--accent-light); border-color: var(--accent);
             background: var(--accent-glow); transform: translateY(-3px) scale(1.08);
-            box-shadow: 0 6px 20px rgba(122,158,142,0.15);
+            box-shadow: 0 6px 20px rgba(var(--accent-rgb),0.15);
         }
 
         /* ── FOOTER ────────────────────────────── */
         .footer {
             position: relative;
             padding: 2rem clamp(1.5rem, 4vw, 3rem) 2.5rem;
-            border-top: 1px solid rgba(122,158,142,0.06);
+            border-top: 1px solid rgba(var(--accent-rgb),0.06);
             display: flex; align-items: center; justify-content: center;
         }
         .footer-inner {
@@ -931,12 +1084,12 @@
             letter-spacing: 0.04em;
         }
         .footer-divider {
-            width: 1px; height: 12px; background: rgba(122,158,142,0.12);
+            width: 1px; height: 12px; background: rgba(var(--accent-rgb),0.12);
         }
         .footer-top {
             position: absolute; right: clamp(1.5rem, 4vw, 3rem); top: 50%; transform: translateY(-50%);
             width: 36px; height: 36px; border-radius: 50%;
-            border: 1px solid rgba(122,158,142,0.1); background: transparent;
+            border: 1px solid rgba(var(--accent-rgb),0.1); background: transparent;
             color: var(--text-muted); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             transition: all 0.35s ease; text-decoration: none;
@@ -951,8 +1104,8 @@
         .scroll-top {
             position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
             width: 44px; height: 44px; border-radius: 50%;
-            border: 1px solid rgba(122,158,142,0.15);
-            background: rgba(10,15,13,0.8);
+            border: 1px solid rgba(var(--accent-rgb),0.15);
+            background: rgba(var(--bg-rgb),0.8);
             backdrop-filter: blur(10px);
             color: var(--accent); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
@@ -964,7 +1117,7 @@
         .scroll-top:hover {
             border-color: var(--accent); background: var(--accent-glow);
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(122,158,142,0.2);
+            box-shadow: 0 8px 24px rgba(var(--accent-rgb),0.2);
         }
 
         /* ── MODAL ─────────────────────────────── */
@@ -979,19 +1132,19 @@
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
         .modal {
-            background: rgba(17,25,22,0.72);
-            border: 1px solid rgba(122,158,142,0.1);
+            background: rgba(var(--surface-rgb),0.72);
+            border: 1px solid rgba(var(--accent-rgb),0.1);
             border-radius: 14px; width: 100%; max-width: 1200px; height: 85vh;
             display: flex; position: relative; overflow: hidden;
             transform: translateY(20px) scale(0.97);
             transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(122,158,142,0.06);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(var(--accent-rgb),0.06);
         }
         .modal-overlay.active .modal { transform: translateY(0) scale(1); }
 
         .modal-preview {
             flex: 1; background: var(--bg-dark);
-            border-right: 1px solid rgba(122,158,142,0.05);
+            border-right: 1px solid rgba(var(--accent-rgb),0.05);
             display: flex; align-items: center; justify-content: center;
         }
         .modal-preview-placeholder {
@@ -1006,7 +1159,7 @@
         }
 
         .modal-close {
-            width: 30px; height: 30px; border: 1px solid rgba(122,158,142,0.08);
+            width: 30px; height: 30px; border: 1px solid rgba(var(--accent-rgb),0.08);
             border-radius: 50%; background: transparent; color: var(--text-secondary);
             cursor: pointer; display: flex; align-items: center; justify-content: center;
             transition: all 0.3s ease; margin-bottom: 1.75rem; flex-shrink: 0;
@@ -1020,19 +1173,55 @@
         .modal-actions {
             display: flex; flex-direction: column; gap: 0.4rem;
             margin-top: 1.5rem; padding-top: 1.25rem;
-            border-top: 1px solid rgba(122,158,142,0.05);
+            border-top: 1px solid rgba(var(--accent-rgb),0.05);
         }
 
         .modal-link {
             font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
             text-transform: uppercase; text-decoration: none; color: var(--text-secondary);
             padding: 0.5rem 1rem; border-radius: 100px;
-            border: 1px solid rgba(122,158,142,0.08);
+            border: 1px solid rgba(var(--accent-rgb),0.08);
             display: flex; align-items: center; justify-content: center; gap: 0.45rem;
             transition: all 0.3s ease;
         }
-        .modal-link:hover { color: var(--accent-light); border-color: rgba(122,158,142,0.3); background: var(--accent-glow); transform: scale(1.03); }
+        .modal-link:hover { color: var(--accent-light); border-color: rgba(var(--accent-rgb),0.3); background: var(--accent-glow); transform: scale(1.03); }
         .modal-link svg { width: 13px; height: 13px; }
+
+        /* ── FULL-WINDOW DOC MODAL (Jarvis, Excel) ─ */
+        .modal--doc { display: block; overflow: hidden; }
+        .modal--doc .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; z-index: 5; margin: 0; background: rgba(var(--bg-rgb),0.6); backdrop-filter: blur(8px); }
+        .doc-scroll { height: 100%; overflow-y: auto; scrollbar-width: thin; }
+        .doc {
+            max-width: 920px; margin: 0 auto;
+            padding: clamp(2.25rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem) 4rem;
+        }
+        .doc-eyebrow { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+        .doc-title { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 600; color: var(--text-primary); line-height: 0.98; letter-spacing: -0.01em; margin-bottom: 0.9rem; }
+        .doc-lede { font-size: clamp(1rem, 1.7vw, 1.18rem); font-weight: 300; line-height: 1.6; color: var(--text-secondary); max-width: 680px; }
+        .doc-lede strong { color: var(--text-primary); font-weight: 500; }
+
+        .doc-stats { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.75rem 0 0.5rem; }
+        .doc-stat { display: flex; flex-direction: column; gap: 0.1rem; padding: 0.7rem 1rem; border-radius: 10px; background: rgba(var(--accent-rgb),0.06); border: 1px solid rgba(var(--accent-rgb),0.14); }
+        .doc-stat b { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--accent); line-height: 1; }
+        .doc-stat span { font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+
+        .doc-h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 2.75rem 0 0.5rem; padding-top: 1.75rem; border-top: 1px solid rgba(var(--accent-rgb),0.1); }
+        .doc-h2:first-of-type { border-top: none; padding-top: 0; }
+        .doc-p { font-size: 0.92rem; font-weight: 300; line-height: 1.75; color: var(--text-secondary); margin-top: 0.75rem; }
+        .doc-p strong { color: var(--text-primary); font-weight: 600; }
+
+        .doc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.25rem; }
+        .doc-card { background: rgba(var(--surface-rgb),0.55); border: 1px solid rgba(var(--accent-rgb),0.08); border-radius: 12px; padding: 1.4rem; box-shadow: inset 0 1px 0 rgba(var(--accent-rgb),0.06); }
+        .doc-card-h { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-body); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+        .doc-card-h svg { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.85; }
+        .doc-card-t { font-family: var(--font-display); font-size: 1.18rem; font-weight: 600; color: var(--text-primary); line-height: 1.2; margin-bottom: 0.5rem; }
+        .doc-card-p { font-size: 0.85rem; font-weight: 300; line-height: 1.65; color: var(--text-secondary); }
+        .doc-card-p strong { color: var(--text-primary); font-weight: 600; }
+        .doc-card--wide { grid-column: 1 / -1; }
+
+        .doc-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 2rem; }
+        .doc-actions .modal-link { font-size: 0.72rem; padding: 0.7rem 1.3rem; }
+        @media (max-width: 720px) { .doc-grid { grid-template-columns: 1fr; } }
 
         /* ── RESPONSIVE ────────────────────────── */
         @media (max-width: 900px) {
@@ -1042,8 +1231,8 @@
             .nav-links.active {
                 display: flex; flex-direction: column; position: absolute;
                 top: 100%; left: 0; right: 0;
-                background: rgba(10,15,13,0.97); backdrop-filter: blur(20px);
-                padding: 1.5rem; border-bottom: 1px solid rgba(122,158,142,0.05);
+                background: rgba(var(--bg-rgb),0.97); backdrop-filter: blur(20px);
+                padding: 1.5rem; border-bottom: 1px solid rgba(var(--accent-rgb),0.05);
                 gap: 1rem; align-items: center;
             }
             .nav-toggle { display: flex; }
@@ -1102,8 +1291,10 @@
             </button>
             <ul class="nav-links">
                 <li><a href="#about" class="magnetic-wrap">About</a></li>
-                <li><a href="#work" class="magnetic-wrap">Work</a></li>
+                <li><a href="#how-i-work" class="magnetic-wrap">How I Work</a></li>
+                <li><a href="#impact" class="magnetic-wrap">Impact</a></li>
                 <li><a href="#skills" class="magnetic-wrap">Skills</a></li>
+                <li><a href="#work" class="magnetic-wrap">Work</a></li>
                 <li><span class="nav-divider"></span></li>
                 <li><a href="#contact" class="nav-contact magnetic-wrap">Get in Touch</a></li>
             </ul>
@@ -1115,10 +1306,10 @@
                 <div class="hero-content">
                     <span class="hero-label reveal reveal-d1">Finance · AI · Automation · Systems</span>
                     <h1 class="hero-name reveal reveal-d2">Art<br>Tiongson</h1>
-                    <p class="hero-title reveal reveal-d3">Product & Systems Analyst <span class="cursor">|</span></p>
+                    <p class="hero-title reveal reveal-d3">Operations Builder · Directs Agentic AI <span class="cursor">|</span></p>
                     <div class="hero-rule reveal reveal-d3"></div>
                     <p class="hero-tagline reveal reveal-d4">
-                        AI-augmented builder at the intersection of <strong>finance and operations</strong>. I identify inefficiencies and leverage AI tools to design, build, and ship real solutions — from automated reconciliation to full-stack web apps.
+                        I direct AI agents to build production software. My domain is <strong>operations and accounting</strong>: I own the problem end to end, requirements, architecture, and source-verified validation, while agents write the implementation under my standards.
                     </p>
                     <div class="hero-cta-group reveal reveal-d5">
                         <a href="#work" class="hero-cta magnetic-wrap">
@@ -1129,18 +1320,10 @@
                     </div>
                 </div>
                 <div class="hero-visual reveal reveal-d4">
-                    <div class="hero-geo">
-                        <div class="hero-geo-ring"></div>
-                        <div class="hero-geo-ring"></div>
-                        <div class="hero-geo-ring"></div>
-                        <div class="hero-geo-ring"></div>
-                        <div class="hero-geo-dot"></div>
-                        <div class="hero-geo-dot-2"></div>
-                        <div class="hero-geo-center">
-                            <div class="hero-geo-center-ring">
-                                <div class="hero-geo-center-dot"></div>
-                            </div>
-                        </div>
+                    <div class="hero-portrait">
+                        <div class="hero-portrait-ring"></div>
+                        <div class="hero-portrait-dot"></div>
+                        <img id="headshot" class="hero-portrait-photo" src="IMG_6214.jpeg" alt="Art Tiongson" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -1149,7 +1332,7 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
             </div>
             <div class="hero-socials reveal reveal-d6">
-                <a href="https://linkedin.com/in/arttiongson" target="_blank" rel="noopener" class="hero-social-link magnetic-wrap" aria-label="LinkedIn">
+                <a href="https://linkedin.com/in/art-tiongson-0426461ab" target="_blank" rel="noopener" class="hero-social-link magnetic-wrap" aria-label="LinkedIn">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
                 <a href="https://github.com/arttiongson" target="_blank" rel="noopener" class="hero-social-link magnetic-wrap" aria-label="GitHub">
@@ -1170,7 +1353,7 @@
                     <div class="snapshot-card glow-card reveal reveal-d2">
                         <div class="snapshot-label">Career Snapshot</div>
                         <div class="snapshot-hero-metric">
-                            <div class="snapshot-hero-value" data-counter="65" data-prefix="$" data-suffix="M">$0M</div>
+                            <div class="snapshot-hero-value" data-counter="65" data-prefix="$" data-suffix="M">$65M</div>
                             <div class="snapshot-hero-desc">Operations managed</div>
                         </div>
                         <div class="snapshot-before-after">
@@ -1186,26 +1369,26 @@
                         <div style="height:1.2rem"></div>
                         <div class="snapshot-stats">
                             <div>
-                                <div class="snapshot-stat-value" data-counter="4">0</div>
+                                <div class="snapshot-stat-value" data-counter="6">6</div>
                                 <div class="snapshot-stat-label">Tools shipped</div>
                             </div>
                             <div>
-                                <div class="snapshot-stat-value" data-counter="3">0</div>
+                                <div class="snapshot-stat-value" data-counter="5">5</div>
                                 <div class="snapshot-stat-label">Languages</div>
                             </div>
                             <div>
                                 <div class="snapshot-stat-value">AI</div>
-                                <div class="snapshot-stat-label">Dev partner</div>
+                                <div class="snapshot-stat-label">Agent-directed</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="about-body">
                     <p class="about-intro reveal reveal-d2">
-                        I ran $65 million in store operations before I ever wrote a line of code. That's why I build differently.
+                        I ran $65 million in store operations before I ever wrote a line of code. That's why I build differently, and why I now direct AI agents to ship the systems I used to wish for.
                     </p>
                     <p class="about-text reveal reveal-d3">
-                        Before moving into product accounting, I led <strong>store operations at a major national retailer</strong> — managing a $65M book of business, leading cross-functional teams, redesigning operational workflows, training staff on new systems, and owning the P&L outcomes.
+                        Before moving into product accounting, I led <strong>store operations at a major national retailer</strong>, managing a $65M book of business, leading cross-functional teams, redesigning operational workflows, training staff on new systems, and owning the P&L outcomes.
                     </p>
 
                     <div class="about-pullquote reveal reveal-d3">
@@ -1216,7 +1399,7 @@
                         When I moved into <strong>product accounting</strong>, I found myself working inside <strong>Microsoft Dynamics NAV</strong>, running monthly close processes and managing inventory reconciliation. Within my first month, I looked at a reconciliation workflow that consumed 2-3 days every cycle and I decided to fix it.
                     </p>
                     <p class="about-text reveal reveal-d4">
-                        Using <strong>AI as my development partner</strong>, I built an automated <strong>Power Query</strong> pipeline pulling live data through <strong>ODBC connections</strong> directly from our ERP database. What took days now takes one click.
+                        I fixed it. I directed AI to build an automated <strong>Power Query</strong> pipeline pulling live data through <strong>ODBC connections</strong> directly from our ERP database. What took days now takes one click. The real lesson was not that AI could write code for me. It was that I could direct it to build real systems, and that the constraint was my judgment about what to build, not the typing.
                     </p>
 
                     <!-- Process Improvement Diagram -->
@@ -1224,7 +1407,7 @@
                         <div class="process-diagram-label">Monthly Close Reconciliation</div>
                         <div class="process-flow">
                             <div class="process-side">
-                                <div class="process-side-label old">Before — 2-3 Days</div>
+                                <div class="process-side-label old">Before: 2-3 Days</div>
                                 <div class="process-step"><span class="step-num">1</span> Compile hard goods inventory</div>
                                 <div class="process-step"><span class="step-num">2</span> Manually create Excel columns</div>
                                 <div class="process-step"><span class="step-num">3</span> Write VLOOKUP formulas by hand</div>
@@ -1235,7 +1418,7 @@
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                             </div>
                             <div class="process-side">
-                                <div class="process-side-label new">After — Seconds</div>
+                                <div class="process-side-label new">After: Seconds</div>
                                 <div class="process-result">
                                     <div>
                                         <div class="process-result-icon">
@@ -1252,11 +1435,72 @@
                     </div>
 
                     <p class="about-text reveal reveal-d5">
-                        That first win set the trajectory. Using AI, I went on to build an <strong>internal inventory portal in ASP.NET Core</strong> with C# and Razor Pages, <strong>Ombri</strong> — a personal finance iOS app, <strong>Music Tool</strong> — an iPadOS reference app for guitar, ukulele, and bass, a <strong>Python-powered Discord bot</strong> with slash commands and music queuing, and <strong>this portfolio site</strong> you're looking at right now.
+                        So I escalated the same skill: from automating one report, to directing <strong>agentic coding workflows in Claude Code</strong>, to running <strong>multiple AI agents in parallel</strong> under my direction and building the custom tooling (<strong>MCP servers</strong>) that extends what they can do. The output: <strong>Jarvis</strong>, my private, always-on AI assistant with a governed agent runtime, full-duplex voice, two-way iMessage, and a human-gated self-modification loop; an open-source <strong>Excel MCP server</strong> that gives agents token-bounded access to spreadsheets; <strong>Ombri</strong> and <strong>ArtFitness</strong> on iOS; <strong>Music Tool</strong> on iPad; an internal inventory portal in ASP.NET Core; and this site. I directed agents to build all of it.
                     </p>
                     <p class="about-text reveal reveal-d5">
-                        I don't position myself as a developer. I'm an <strong>operations-minded builder</strong> who uses AI to ship at the speed of a full engineering team. I see where processes break down, and I have the tools and the fluency to fix them.
+                        I don't position myself as a traditional developer. I'm an <strong>operations builder who directs agentic AI</strong> to ship at the speed of a full engineering team, and who builds the agent tooling itself. I see where processes break down, and I have the judgment and the tooling to fix them.
                     </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How I Work -->
+        <div class="section-elevated">
+        <section class="howiwork" id="how-i-work">
+            <span class="howiwork-label reveal">Operating Model</span>
+            <h2 class="howiwork-heading reveal reveal-d1">How I Work</h2>
+            <p class="howiwork-lead reveal reveal-d2">
+                I don't write the code, and I never have. I <strong>direct AI agents</strong> to build it. My job is the part the agents can't do: owning the problem, setting the architecture, holding the standards, and verifying the result against the source. I work the way a lead does, except my team is a fleet of AI coding agents running in parallel.
+            </p>
+            <div class="howiwork-grid">
+                <div class="howiwork-card glow-card reveal reveal-d2">
+                    <div class="howiwork-card-step"><span>01</span> Own</div>
+                    <div class="howiwork-card-title">I own the problem end to end</div>
+                    <div class="howiwork-card-desc">Requirements, architecture, data decisions, and the definition of done are mine. I come from <strong>operations and accounting</strong>, so I read process bottlenecks fast and know what a correct result actually looks like before a single line is written.</div>
+                </div>
+                <div class="howiwork-card glow-card reveal reveal-d3">
+                    <div class="howiwork-card-step"><span>02</span> Direct</div>
+                    <div class="howiwork-card-title">I direct agents, in parallel</div>
+                    <div class="howiwork-card-desc">I orchestrate <strong>multiple AI coding agents at once</strong>, each in its own lane, coordinated through written handoff docs and strict version control. When two agents once built the same component independently, I caught the collision in git, backed out the duplicate, and kept the better implementation.</div>
+                </div>
+                <div class="howiwork-card glow-card reveal reveal-d3">
+                    <div class="howiwork-card-step"><span>03</span> Govern</div>
+                    <div class="howiwork-card-title">I set the standards they work within</div>
+                    <div class="howiwork-card-desc">The agents operate inside rules I define: <strong>deny-by-default permissions</strong>, propose-don't-apply self-modification, and test-before-promote. I also build the custom tooling (<strong>MCP servers</strong>) that extends what they can safely do.</div>
+                </div>
+                <div class="howiwork-card glow-card reveal reveal-d4">
+                    <div class="howiwork-card-step"><span>04</span> Verify</div>
+                    <div class="howiwork-card-title">I verify against the source</div>
+                    <div class="howiwork-card-desc">Agents are fast, not infallible. I validate every output against the real data. That discipline is how I caught an accounting process <strong>overstating a material line by ~57%</strong> and surfaced redundant spend others had missed.</div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <!-- Impact -->
+        <section class="impact" id="impact">
+            <span class="impact-label reveal">Proof</span>
+            <h2 class="impact-heading reveal reveal-d1">Impact</h2>
+            <div class="impact-grid">
+                <div class="impact-card glow-card reveal reveal-d2">
+                    <div class="impact-value">$65M</div>
+                    <div class="impact-label-sm">Operations managed</div>
+                    <div class="impact-desc">Book of business owned in retail store operations before moving into product accounting.</div>
+                </div>
+                <div class="impact-card glow-card reveal reveal-d3">
+                    <div class="impact-value">~57%</div>
+                    <div class="impact-label-sm">Costing error caught</div>
+                    <div class="impact-desc">A bug in the prior process was overstating a material line. Found by validating agent output against source data.</div>
+                </div>
+                <div class="impact-card glow-card reveal reveal-d4">
+                    <div class="impact-value">~$40K<span style="font-size:0.5em;font-weight:400">/yr</span></div>
+                    <div class="impact-label-sm">Redundant spend cut</div>
+                    <div class="impact-desc">Reverse-engineered a legacy costing database and surfaced software spend used by only two people.</div>
+                </div>
+                <div class="impact-card glow-card reveal reveal-d5">
+                    <div class="impact-value">Days&#8201;&#8594;&#8201;1</div>
+                    <div class="impact-label-sm">Monthly reconciliation</div>
+                    <div class="impact-desc">A multi-day manual close became a single refresh via a Power Query and ODBC pipeline against the ERP.</div>
                 </div>
             </div>
         </section>
@@ -1268,6 +1512,19 @@
             <h2 class="skills-heading reveal reveal-d1">What I Work With</h2>
             <div class="skills-grid">
                 <div class="skills-group glow-card reveal reveal-d2">
+                    <div class="skills-group-title">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M5.6 5.6l2.1 2.1"/><path d="M16.3 16.3l2.1 2.1"/><path d="M3 12h3"/><path d="M18 12h3"/><path d="M5.6 18.4l2.1-2.1"/><path d="M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
+                        AI / Agentic
+                    </div>
+                    <div class="skills-group-tags">
+                        <span class="skills-tag">Claude API & Agent SDK</span>
+                        <span class="skills-tag">Claude Code</span>
+                        <span class="skills-tag">Model Context Protocol (MCP)</span>
+                        <span class="skills-tag">Agentic Dev Workflows</span>
+                        <span class="skills-tag">Multi-Agent Orchestration</span>
+                    </div>
+                </div>
+                <div class="skills-group glow-card reveal reveal-d3">
                     <div class="skills-group-title">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                         Operations & Finance
@@ -1281,7 +1538,7 @@
                         <span class="skills-tag">Operations Leadership</span>
                     </div>
                 </div>
-                <div class="skills-group glow-card reveal reveal-d3">
+                <div class="skills-group glow-card reveal reveal-d4">
                     <div class="skills-group-title">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                         Technical
@@ -1293,10 +1550,9 @@
                         <span class="skills-tag">SQL</span>
                         <span class="skills-tag">Power Query / M</span>
                         <span class="skills-tag">ODBC</span>
-                        <span class="skills-tag">AI-Augmented Dev</span>
                     </div>
                 </div>
-                <div class="skills-group glow-card reveal reveal-d4">
+                <div class="skills-group glow-card reveal reveal-d5">
                     <div class="skills-group-title">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                         Tools & Platforms
@@ -1319,6 +1575,68 @@
             <span class="work-label reveal">Selected Work</span>
             <h2 class="work-heading reveal reveal-d1">Things I've Built</h2>
             <div class="work-cards">
+                <div class="work-card reveal reveal-d2" onclick="openModal('jarvis')">
+                    <div class="work-card-content">
+                        <div class="work-card-head">
+                            <span class="work-card-type">Self-Hosted AI Platform</span>
+                            <span class="status-pill status-pill--progress">Always on</span>
+                        </div>
+                        <h3 class="work-card-title">Jarvis</h3>
+                        <p class="work-card-desc">A self-hosted AI assistant platform with the Claude API as its reasoning core. Full-duplex voice, two-way iMessage, and smart-home control, with persistent memory and a permission layer that allow-lists and audits every tool call.</p>
+                        <div class="work-card-tech">
+                            <span class="work-card-pill">Claude Agent SDK</span>
+                            <span class="work-card-pill">Python</span>
+                            <span class="work-card-pill">Voice</span>
+                            <span class="work-card-pill">Home Assistant</span>
+                        </div>
+                    </div>
+                    <div class="work-card-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                    </div>
+                </div>
+                <div class="work-card reveal reveal-d3" onclick="openModal('artfitness')">
+                    <div class="work-card-content">
+                        <div class="work-card-head">
+                            <span class="work-card-type">iOS Application</span>
+                            <span class="status-pill status-pill--progress">TestFlight soon</span>
+                        </div>
+                        <h3 class="work-card-title">ArtFitness</h3>
+                        <p class="work-card-desc">A native iOS workout app with an AI coaching engine that gives real-time, in-workout feedback informed by your training history. A REST API exposes workout data to other tools, and response caching keeps per-user inference cost in check.</p>
+                        <div class="work-card-tech">
+                            <span class="work-card-pill">SwiftUI</span>
+                            <span class="work-card-pill">SwiftData</span>
+                            <span class="work-card-pill">Claude API</span>
+                            <span class="work-card-pill">REST API</span>
+                        </div>
+                    </div>
+                    <div class="work-card-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                    </div>
+                </div>
+                <div class="work-card reveal reveal-d4" onclick="openModal('excelmcp')">
+                    <div class="work-card-content">
+                        <div class="work-card-head">
+                            <span class="work-card-type">Open Source · MCP Server</span>
+                            <span class="status-pill">Open source</span>
+                        </div>
+                        <h3 class="work-card-title">Excel MCP Server</h3>
+                        <p class="work-card-desc">An open-source MCP server that lets an AI agent read and manipulate Excel workbooks directly, with token guardrails that keep large-file operations inside the model's context window.</p>
+                        <div class="work-card-tech">
+                            <span class="work-card-pill">Python</span>
+                            <span class="work-card-pill">Model Context Protocol</span>
+                            <span class="work-card-pill">Excel</span>
+                        </div>
+                    </div>
+                    <div class="work-card-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Old Projects -->
+            <span class="work-label reveal" style="margin-top:4.5rem;">Archive</span>
+            <h2 class="work-heading reveal reveal-d1">Old Projects</h2>
+            <div class="work-cards">
                 <div class="work-card reveal reveal-d2" onclick="openModal('ombri')">
                     <div class="work-card-content">
                         <div class="work-card-head">
@@ -1326,7 +1644,7 @@
                             <span class="status-pill status-pill--progress">In progress</span>
                         </div>
                         <h3 class="work-card-title">Ombri</h3>
-                        <p class="work-card-desc">Finance by the hour — a personal finance iOS app with a time-of-day aesthetic. Morning, afternoon, sunset, and night themes shift the interface as the day moves. Currently in beta.</p>
+                        <p class="work-card-desc">Finance by the hour: a personal finance iOS app with a time-of-day aesthetic. Morning, afternoon, sunset, and night themes shift the interface as the day moves. Currently in beta.</p>
                         <div class="work-card-tech">
                             <span class="work-card-pill">Swift</span>
                             <span class="work-card-pill">SwiftUI</span>
@@ -1338,23 +1656,7 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
                     </div>
                 </div>
-                <div class="work-card reveal reveal-d3" onclick="openModal('inventory')">
-                    <div class="work-card-content">
-                        <span class="work-card-type">Internal Tool</span>
-                        <h3 class="work-card-title">Inventory Management Portal</h3>
-                        <p class="work-card-desc">Replaced slow legacy system lookups with an instant, cached dashboard — giving the team real-time visibility into inventory issues.</p>
-                        <div class="work-card-tech">
-                            <span class="work-card-pill">ASP.NET Core</span>
-                            <span class="work-card-pill">C#</span>
-                            <span class="work-card-pill">ODBC</span>
-                            <span class="work-card-pill">SQL</span>
-                        </div>
-                    </div>
-                    <div class="work-card-arrow">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-                    </div>
-                </div>
-                <div class="work-card reveal reveal-d4" onclick="openModal('musictool')">
+                <div class="work-card reveal reveal-d3" onclick="openModal('musictool')">
                     <div class="work-card-content">
                         <div class="work-card-head">
                             <span class="work-card-type">iPadOS Application</span>
@@ -1373,19 +1675,16 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
                     </div>
                 </div>
-                <div class="work-card reveal reveal-d5" onclick="openModal('fitness')">
+                <div class="work-card reveal reveal-d4" onclick="openModal('inventory')">
                     <div class="work-card-content">
-                        <div class="work-card-head">
-                            <span class="work-card-type">iOS Application</span>
-                            <span class="status-pill status-pill--progress">In progress</span>
-                        </div>
-                        <h3 class="work-card-title">AI-Powered Fitness</h3>
-                        <p class="work-card-desc">An iOS fitness companion with Claude at its core — conversational workout planning, adaptive programming, and a coach that actually listens. Log a session, ask for a swap, get a structured plan back.</p>
+                        <span class="work-card-type">Internal Tool</span>
+                        <h3 class="work-card-title">Inventory Management Portal</h3>
+                        <p class="work-card-desc">Replaced slow legacy system lookups with an instant, cached dashboard, giving the team real-time visibility into inventory issues.</p>
                         <div class="work-card-tech">
-                            <span class="work-card-pill">Swift</span>
-                            <span class="work-card-pill">SwiftUI</span>
-                            <span class="work-card-pill">Claude API</span>
-                            <span class="work-card-pill">iOS</span>
+                            <span class="work-card-pill">ASP.NET Core</span>
+                            <span class="work-card-pill">C#</span>
+                            <span class="work-card-pill">ODBC</span>
+                            <span class="work-card-pill">SQL</span>
                         </div>
                     </div>
                     <div class="work-card-arrow">
@@ -1402,13 +1701,19 @@
                 <span class="contact-label reveal">Contact</span>
                 <h2 class="contact-heading reveal reveal-d1">Let's Connect</h2>
                 <p class="contact-text reveal reveal-d2">
-                    I'm open to opportunities in product operations, systems analysis, and roles where I can build tools that solve real problems.
+                    I'm open to roles where one person owns real surface area where software meets an industry vertical, the kind of work where directing agentic AI lets me ship like a full team.
                 </p>
                 <div class="reveal reveal-d3">
                     <a href="mailto:arttion.68@gmail.com" class="contact-email magnetic-wrap">arttion.68@gmail.com</a>
                 </div>
+                <div class="reveal reveal-d3">
+                    <a href="resume.html" class="contact-resume magnetic-wrap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+                        View résumé
+                    </a>
+                </div>
                 <div class="contact-socials reveal reveal-d4">
-                    <a href="https://linkedin.com/in/arttiongson" target="_blank" rel="noopener" class="contact-social-link magnetic-wrap" aria-label="LinkedIn">
+                    <a href="https://linkedin.com/in/art-tiongson-0426461ab" target="_blank" rel="noopener" class="contact-social-link magnetic-wrap" aria-label="LinkedIn">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </a>
                     <a href="https://github.com/arttiongson" target="_blank" rel="noopener" class="contact-social-link magnetic-wrap" aria-label="GitHub">
@@ -1443,12 +1748,163 @@
     </button>
 
     <!-- Modals -->
+    <div class="modal-overlay" id="modal-jarvis" onclick="closeModal(event,'jarvis')">
+        <div class="modal modal--doc">
+            <button class="modal-close" onclick="closeModal(event,'jarvis',true)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+            <div class="doc-scroll">
+                <div class="doc">
+                    <div class="doc-eyebrow">Self-Hosted AI Platform · Always on · Private project</div>
+                    <h1 class="doc-title">Jarvis</h1>
+                    <p class="doc-lede">A private, always-on AI assistant running on my own hardware: full-duplex voice, two-way iMessage, smart-home control, persistent memory, and the ability to safely propose changes to its own code. Not a wrapper around a chatbot, but a <strong>distributed, self-improving platform</strong> with its own security model, observability stack, automated test gate, and a daily self-reflection loop. Claude is the reasoning layer. <strong>I architected and directed it end to end</strong>, specifying the systems and standards while AI coding agents wrote the implementation.</p>
+
+                    <div class="doc-stats">
+                        <div class="doc-stat"><b>~0.2s</b><span>First-audio voice latency</span></div>
+                        <div class="doc-stat"><b>2-tier</b><span>Cost-aware model routing</span></div>
+                        <div class="doc-stat"><b>Deny-by-default</b><span>Governed agent runtime</span></div>
+                        <div class="doc-stat"><b>Human-gated</b><span>Self-modification loop</span></div>
+                    </div>
+
+                    <h2 class="doc-h2">Architecture &amp; key design decisions</h2>
+                    <div class="doc-grid">
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="8" y="14" width="8" height="8" rx="1"/><path d="M6 10v2a2 2 0 0 0 2 2h2"/><path d="M18 10v2a2 2 0 0 1-2 2h-2"/></svg> Topology</div>
+                            <div class="doc-card-t">Distributed, augment-don't-replace</div>
+                            <div class="doc-card-p">Multiple machines on a LAN, each with a deliberate role: a canonical production host running the home-automation hub, voice orchestration, and state; an ML coprocessor that bridges the Apple ecosystem; and a separate, fail-closed test environment. I kept the orchestrator on Linux and treated the Apple machine as a capability endpoint rather than consolidating, since sub-millisecond LAN round-trips make the split nearly free while keeping the right OS for each job.</div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Security</div>
+                            <div class="doc-card-t">Governed agent runtime</div>
+                            <div class="doc-card-p">The brain is an LLM with tool access, sandboxed by a <strong>deny-by-default permission gate</strong>: every tool call is explicitly allow-listed and audited, with no ambient access and per-call authorization. The model was hardened iteratively, closing over-permissive paths as I found them, around one core invariant: <strong>the assistant cannot widen its own sandbox.</strong></div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg> Cost &amp; quality</div>
+                            <div class="doc-card-t">Two-tier model routing</div>
+                            <div class="doc-card-p">A semantic capability and stakes router picks a cheap, fast model for simple turns and escalates to the stronger model for hard or agentic ones, per turn and fail-open. It holds a heavy-use assistant inside a fixed monthly budget (roughly a 3x cost difference between tiers) without dumbing down hard requests.</div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M5.6 5.6l2.1 2.1"/><path d="M3 12h3"/><path d="M5.6 18.4l2.1-2.1"/><circle cx="12" cy="12" r="3"/><path d="M18.4 5.6l-2.1 2.1"/><path d="M21 12h-3"/></svg> Self-improvement</div>
+                            <div class="doc-card-t">Self-modification, human-gated</div>
+                            <div class="doc-card-p">The assistant can propose edits to its own code, persona, and docs. Each proposal is automatically fitness-tested (compiles, imports, and does not alter its own guardrails) and archived in version control, but <strong>nothing applies without my approval.</strong> Anchor-based patches let it edit one section of a large file instead of regenerating it.</div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg> Memory</div>
+                            <div class="doc-card-t">Three-tier memory &amp; curation</div>
+                            <div class="doc-card-p">Hot (how it responds), cold (what it knows), and identity layers, all git-versioned and edited through gated tools. A daily reflection job distills lessons, consolidates the knowledge base, and evicts stale entries, autonomous but reversible and LLM-judged.</div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg> Voice</div>
+                            <div class="doc-card-t">Latency-tuned voice pipeline</div>
+                            <div class="doc-card-p">Hardware acoustic-echo-cancellation enables full-duplex and barge-in, with streaming speech-to-text and text-to-speech. I drove first-audio latency to <strong>about 0.2 seconds</strong> through per-stage optimization: eliminating dead narration paths, cache-warming, low-latency audio buffering, and TTS engine bake-offs.</div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg> Observability</div>
+                            <div class="doc-card-t">Audit stack &amp; a real test gate</div>
+                            <div class="doc-card-p">A six-table audit database, health and metrics endpoints, and custom latency and audit tooling. A <strong>fail-closed</strong> automated test harness proves the test environment never touches production state, runs as the pre-deploy gate, and includes both deterministic checks and LLM-judged behavioral scenarios.</div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="9"/></svg> Self-map</div>
+                            <div class="doc-card-t">The system documents itself</div>
+                            <div class="doc-card-p">An indexed map of every subsystem, plus skills the assistant uses to navigate and reason about its own architecture. A daily audit flags documentation that has drifted from reality, so the map stays trustworthy as the system evolves.</div>
+                        </div>
+                    </div>
+
+                    <h2 class="doc-h2">The meta-skill: directing AI agents at scale</h2>
+                    <p class="doc-p">Jarvis is the clearest example of how I work. The marketable skill is not that I typed the code, it is that I architected the system and <strong>directed AI coding agents to build it</strong> to my standards.</p>
+                    <div class="doc-grid">
+                        <div class="doc-card doc-card--wide">
+                            <div class="doc-card-p">
+                                <strong>Parallel agent lanes.</strong> I run multiple AI coding agents at once across separate lanes (voice, self-improvement infrastructure, Apple integration, system-mapping), coordinated through written handoff docs and strict git discipline.<br><br>
+                                <strong>Resolved a real concurrency collision.</strong> Two agents independently built the same component. I caught it in version control, backed out the duplicate, preserved the better implementation, and codified clearer lane ownership so it could not recur.<br><br>
+                                <strong>I set the standards they work within:</strong> deny-by-default security, propose-don't-apply self-modification, lift patterns rather than import frameworks, and test-before-promote.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doc-actions">
+                        <span class="modal-link" style="cursor:default">Private project · no public repo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-artfitness" onclick="closeModal(event,'artfitness')">
+        <div class="modal">
+            <div class="modal-preview modal-preview--gallery" style="padding:0">
+                <iframe src="artfitness-mockup.html" title="ArtFitness home screen" loading="lazy" style="width:100%;height:100%;border:none;border-radius:14px 0 0 14px"></iframe>
+            </div>
+            <div class="modal-panel">
+                <button class="modal-close" onclick="closeModal(event,'artfitness',true)">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+                <span class="modal-type">iOS Application · TestFlight soon</span>
+                <h3 class="modal-title">ArtFitness</h3>
+                <p class="modal-desc">A native iOS workout app with an AI coaching engine at its core. It gives real-time, in-workout feedback informed by your training history: log a set, ask for a swap, get a structured adjustment back. A REST API exposes workout data so other tools can build on it, and response caching keeps per-user inference cost down. Built solo in SwiftUI with SwiftData, approaching TestFlight beta.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-excelmcp" onclick="closeModal(event,'excelmcp')">
+        <div class="modal modal--doc">
+            <button class="modal-close" onclick="closeModal(event,'excelmcp',true)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+            <div class="doc-scroll">
+                <div class="doc">
+                    <div class="doc-eyebrow">Open Source · Model Context Protocol Server</div>
+                    <h1 class="doc-title">Excel MCP Server</h1>
+                    <p class="doc-lede">An open-source <strong>Model Context Protocol</strong> server that gives an AI agent direct read and write access to Excel workbooks: open a file, inspect sheets, read ranges, and write cells back, all as structured MCP tool calls. The hard problem with spreadsheets is size, so the server adds <strong>token guardrails</strong> that keep large-file operations inside the model's context window instead of failing them. Built in Python.</p>
+
+                    <div class="doc-stats">
+                        <div class="doc-stat"><b>Open source</b><span>Public on MCP Market</span></div>
+                        <div class="doc-stat"><b>Python</b><span>MCP server</span></div>
+                        <div class="doc-stat"><b>Read + write</b><span>Direct workbook access</span></div>
+                        <div class="doc-stat"><b>Token-bounded</b><span>Fits the context window</span></div>
+                    </div>
+
+                    <h2 class="doc-h2">What it does</h2>
+                    <p class="doc-p">An AI agent that can reason about a spreadsheet is only useful if it can actually touch one. This server exposes Excel as a set of structured tools an agent can call: list sheets, read a range, write cells, and inspect structure, so the agent works directly against a real workbook rather than a copy pasted into a prompt. It runs locally over the Model Context Protocol, the same interface any MCP-aware client (such as Claude) can connect to.</p>
+
+                    <h2 class="doc-h2">Key design decisions</h2>
+                    <div class="doc-grid">
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 9v12"/></svg> The core problem</div>
+                            <div class="doc-card-t">Spreadsheets overrun context</div>
+                            <div class="doc-card-p">A single large workbook can blow past a model's context window in one naive read, which fails the whole operation. The interesting engineering is not the file I/O, it is making large-file access <strong>survivable</strong> for a model with a finite context budget.</div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg> The fix</div>
+                            <div class="doc-card-t">Token guardrails that bound &amp; page</div>
+                            <div class="doc-card-p">Each operation bounds and pages what it returns, so a read of a huge sheet comes back in context-sized chunks instead of one oversized payload. Large-file work stays <strong>inside context limits</strong> rather than failing outright.</div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg> Interface</div>
+                            <div class="doc-card-t">Structured MCP tool calls</div>
+                            <div class="doc-card-p">Every capability is exposed as a typed MCP tool, so any MCP-aware agent can discover and call it with structured arguments and structured results, no bespoke glue per client.</div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-card-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg> Why I built it</div>
+                            <div class="doc-card-t">From my own workflow</div>
+                            <div class="doc-card-p">My day-to-day is product costing and inventory in spreadsheets. I wanted agents to operate on real workbooks safely, so I built the tool I needed and open-sourced it.</div>
+                        </div>
+                    </div>
+
+                    <div class="doc-actions">
+                        <a href="https://mcpmarket.com/server/excel-live" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="m15 3 6 0 0 6"/><path d="m10 14 11-11"/></svg> View on MCP Market</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="modal-ombri" onclick="closeModal(event,'ombri')">
         <div class="modal">
             <div class="modal-preview modal-preview--gallery">
                 <div class="phone-gallery phone-gallery--ombri">
-                    <img src="ombri-sunset.png" alt="Ombri — Sunset theme" loading="lazy">
-                    <img src="ombri-night.png" alt="Ombri — Night theme" loading="lazy">
+                    <img src="ombri-sunset.png" alt="Ombri sunset theme" loading="lazy">
+                    <img src="ombri-night.png" alt="Ombri night theme" loading="lazy">
                 </div>
             </div>
             <div class="modal-panel">
@@ -1457,10 +1913,26 @@
                 </button>
                 <span class="modal-type">iOS Application · In progress</span>
                 <h3 class="modal-title">Ombri</h3>
-                <p class="modal-desc">A personal finance iOS app built around the idea that spending feels different at different times of day. Four time-of-day themes — morning, afternoon, sunset, night — shift the entire interface as the sun moves, from warm ambers to deep violets. Same data, same layout; the palette and asymmetry do the storytelling. Currently in closed beta with the App Store release on the horizon.</p>
+                <p class="modal-desc">A personal finance iOS app built around the idea that spending feels different at different times of day. Four time-of-day themes (morning, afternoon, sunset, night) shift the entire interface as the sun moves, from warm ambers to deep violets. Same data, same layout; the palette and asymmetry do the storytelling. Currently in closed beta with the App Store release on the horizon.</p>
                 <div class="modal-actions">
                     <a href="https://arttiongson.github.io/Ombri/" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="m15 3 6 0 0 6"/><path d="m10 14 11-11"/></svg> View landing</a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-musictool" onclick="closeModal(event,'musictool')">
+        <div class="modal">
+            <div class="modal-preview modal-preview--tablet">
+                <img class="tablet-hero" src="musictool-hero.png" alt="Music Tool chords tab on iPad" loading="lazy">
+            </div>
+            <div class="modal-panel">
+                <button class="modal-close" onclick="closeModal(event,'musictool',true)">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+                <span class="modal-type">iPadOS Application · Side project</span>
+                <h3 class="modal-title">Music Tool</h3>
+                <p class="modal-desc">A personal reference tool for guitar, ukulele, and bass, built in SwiftUI for iPadOS 18+ in landscape. Four tabs: a Chords library rendering 86 voicings as color-coded dots on a live fretboard, a Note Board for scale visualization, a chromatic Tuner with autocorrelation pitch detection, and a Songs workspace that captures chord progressions as visual diagrams. Warm lo-fi analog aesthetic: rosewood fretboard, brass strings, film grain, Playfair Display serif.</p>
             </div>
         </div>
     </div>
@@ -1476,52 +1948,7 @@
                 </button>
                 <span class="modal-type">Internal Tool</span>
                 <h3 class="modal-title">Inventory Management Portal</h3>
-                <p class="modal-desc">The existing system required navigating a legacy ERP with slow, manual lookups across multiple screens. Using AI, I built an internal web portal in ASP.NET Core that connects to the database via ODBC and surfaces key inventory data instantly — negative on-hand flagging, stale inventory detection, and quick item search. The team now has real-time visibility into problems that previously took hours of manual follow-up.</p>
-                <div class="modal-actions">
-                    <a href="https://github.com/arttiongson" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="modal-musictool" onclick="closeModal(event,'musictool')">
-        <div class="modal">
-            <div class="modal-preview modal-preview--tablet">
-                <img class="tablet-hero" src="musictool-hero.png" alt="Music Tool — Chords tab on iPad" loading="lazy">
-            </div>
-            <div class="modal-panel">
-                <button class="modal-close" onclick="closeModal(event,'musictool',true)">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
-                <span class="modal-type">iPadOS Application · Side project</span>
-                <h3 class="modal-title">Music Tool</h3>
-                <p class="modal-desc">A personal reference tool for guitar, ukulele, and bass, built in SwiftUI for iPadOS 18+ in landscape. Four tabs: a Chords library rendering 86 voicings as color-coded dots on a live fretboard, a Note Board for scale visualization, a chromatic Tuner with autocorrelation pitch detection, and a Songs workspace that captures chord progressions as visual diagrams. Warm lo-fi analog aesthetic — rosewood fretboard, brass strings, film grain, Playfair Display serif.</p>
-                <div class="modal-actions">
-                    <a href="https://github.com/arttiongson" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="modal-fitness" onclick="closeModal(event,'fitness')">
-        <div class="modal">
-            <div class="modal-preview modal-preview--gallery">
-                <div class="phone-gallery">
-                    <img src="fitness-coach.png" alt="AI-Powered Fitness — Coach chat" loading="lazy">
-                    <img src="fitness-workout.png" alt="AI-Powered Fitness — Workout history" loading="lazy">
-                    <img src="fitness-nutrition.png" alt="AI-Powered Fitness — Nutrition tracking" loading="lazy">
-                </div>
-            </div>
-            <div class="modal-panel">
-                <button class="modal-close" onclick="closeModal(event,'fitness',true)">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
-                <span class="modal-type">iOS Application · In progress</span>
-                <h3 class="modal-title">AI-Powered Fitness</h3>
-                <p class="modal-desc">An iOS fitness companion with Claude at its core. Conversational workout planning, adaptive programming that learns your lifts, and a coach that actually listens — log a session, ask for a swap, get a structured plan back. Currently in active development; built in SwiftUI with the Claude API as the brain.</p>
-                <div class="modal-actions">
-                    <a href="https://github.com/arttiongson" target="_blank" rel="noopener" class="modal-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
-                </div>
+                <p class="modal-desc">The existing system required navigating a legacy ERP with slow, manual lookups across multiple screens. I directed the AI-assisted build of an internal web portal in ASP.NET Core that connects to the database via ODBC and surfaces key inventory data instantly: negative on-hand flagging, stale inventory detection, and quick item search. The team now has real-time visibility into problems that previously took hours of manual follow-up.</p>
             </div>
         </div>
     </div>
@@ -1586,6 +2013,23 @@
                 el.style.transition = 'transform 0.45s cubic-bezier(0.25,0.1,0.25,1)';
                 el.style.transform = 'translate(0,0) scale(1)';
                 setTimeout(() => el.style.transition = '', 450);
+            });
+        });
+
+        // SMOOTH IN-PAGE NAVIGATION (reliable under sticky nav + preloader)
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const id = a.getAttribute('href');
+                if (id.length < 2) return; // leave bare "#" links to their own handlers
+                const el = document.querySelector(id);
+                if (!el) return;
+                e.preventDefault();
+                const navH = (document.querySelector('.nav') || {}).offsetHeight || 0;
+                const y = el.getBoundingClientRect().top + window.pageYOffset - navH - 8;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+                const links = document.querySelector('.nav-links');
+                if (links) links.classList.remove('active');
+                history.replaceState(null, '', id);
             });
         });
 

@@ -1,6 +1,9 @@
-files.zip
-headshot_*.png
-pulid_*.png
-fixed_*.jpeg
-bg-aurora-2.webp
-0.jpg
+# OS
+.DS_Store
+
+# Editor / tooling scratch
+.claude/
+
+# Local backups (not part of the site)
+*.bak
+*.bak2
