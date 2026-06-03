@@ -237,6 +237,17 @@
             filter: var(--aurora-filter, none);
         }
 
+        /* Mobile performance: the animated blur(100px) + blend layers freeze and
+           can OOM-crash phone browsers. Drop them for a cheap static wash. */
+        @media (max-width: 900px) {
+            .mesh-bg::before, .mesh-bg::after, .mesh-orb, .mesh-orb-2, .mesh-aurora { display: none !important; }
+            .mesh-bg { background: radial-gradient(ellipse at 72% 16%, rgba(var(--accent-rgb),0.10), transparent 60%); }
+        }
+        /* Respect reduced-motion: kill decorative infinite animations everywhere. */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; }
+        }
+
         @keyframes meshFloat {
             0%, 100% { transform: translate(0, 0) scale(1); }
             33% { transform: translate(5%, 8%) scale(1.05); }
@@ -1855,7 +1866,7 @@
     <div class="modal-overlay" id="modal-artfitness" onclick="closeModal(event,'artfitness')">
         <div class="modal">
             <div class="modal-preview modal-preview--gallery" style="padding:0">
-                <iframe src="artfitness-mockup.html" title="ArtFitness home screen" loading="lazy" style="width:100%;height:100%;border:none;border-radius:14px 0 0 14px"></iframe>
+                <iframe data-src="artfitness-mockup.html" title="ArtFitness home screen" style="width:100%;height:100%;border:none;border-radius:14px 0 0 14px"></iframe>
             </div>
             <div class="modal-panel">
                 <button class="modal-close" onclick="closeModal(event,'artfitness',true)">
@@ -1962,7 +1973,7 @@
     <div class="modal-overlay" id="modal-inventory" onclick="closeModal(event,'inventory')">
         <div class="modal">
             <div class="modal-preview" style="padding:0">
-                <iframe src="mockup-inventory.html" style="width:100%;height:100%;border:none;border-radius:14px 0 0 14px"></iframe>
+                <iframe data-src="mockup-inventory.html" style="width:100%;height:100%;border:none;border-radius:14px 0 0 14px"></iframe>
             </div>
             <div class="modal-panel">
                 <button class="modal-close" onclick="closeModal(event,'inventory',true)">
@@ -2084,7 +2095,10 @@
 
         // MODAL
         window.openModal = id => {
-            document.getElementById('modal-' + id).classList.add('active');
+            const m = document.getElementById('modal-' + id);
+            // Load heavy embeds (React/Babel mockup, etc.) only when the modal first opens.
+            m.querySelectorAll('iframe[data-src]').forEach(f => { if (!f.src) f.src = f.getAttribute('data-src'); });
+            m.classList.add('active');
             document.body.style.overflow = 'hidden';
         };
         window.closeModal = (e, id, force) => {
